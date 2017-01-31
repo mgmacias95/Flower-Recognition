@@ -19,6 +19,10 @@ images = [cv2.imread('Dataset/image_'+'%0*d'%(4,i)+'.jpg',
 # % of the training subset size over the hole dataset
 TR_SIZE = 0.85
 
+# do a subset for train and test
+training_mask = np.random.choice(len(images), size=int(len(images)*TR_SIZE), 
+                                 replace=False)
+
 # Compute the hog descriptor for an image
 def hog_descriptor(image, n_bins = 16):
     # We get the derivatives of the image
@@ -40,24 +44,24 @@ def hog_descriptor(image, n_bins = 16):
     # And return an array with the histogram
     return np.hstack(histogram)
 
-# We create a DataFrame that store the label of the images,
+# train a model
+def train_model(model, label, data, training_mask=training_mask, 
+                lay=cv2.ml.ROW_SAMPLE):
+    model.train(samples=data[training_mask], layout=lay, 
+                responses=label[training_mask])
+
+# We create two arrays that store the label of the images,
 # and the result of the HOG descriptor
-# df = pd.DataFrame(columns = ['label', 'hog_values'])
 df_labels = np.zeros(len(images), np.int32)
 df_data   = []
 print("Empiezo a crear el DataFrame")
-# Fill the DataFrame
+# Fill the arrays
 for i in range(len(images)):
-    # df.loc[i] = [labels[i//80], hog_descriptor(images[i])]
     df_labels[i] = i//num_photos_per_class
     df_data.append(hog_descriptor(images[i]))
 
 df_data_array = np.array(df_data, np.float32)
 df_data.clear()
-
-# Once we got the hole dataset in a DataFrame, we must do
-# a subset for train and test
-training_mask = np.random.choice(len(images), size=int(len(images)*TR_SIZE), replace=False)
 
 # Declare SVM model
 svm_model = cv2.ml.SVM_create()
@@ -67,19 +71,6 @@ svm_model.setNu(0.05)
 svm_model.setKernel(cv2.ml.SVM_RBF)
 svm_model.setType(cv2.ml.SVM_NU_SVC)
 
-# declare responses vector
-# responses = np.array(df.size)
+# train the svm model
+train_model(model=svm_model, label=df_labels, data=df_data_array)
 
-svm_model.train(samples=df_data_array[training_mask], 
-                layout=cv2.ml.ROW_SAMPLE, 
-                responses=df_labels[training_mask])
-
-# svm_params = dict(svm_type = cv2.ml.SVM_NU_SVC, # SVM for n-class classification (n >= 2)
-#                   kernel_type = cv2.ml.SVM_RBF, # e^{-gamma||x_i-x_j||^2}, gamma > 0
-#                   C = 2.67,
-#                   gamma = 5.4
-#                  )
-# print("voy a entrenar el modelo")
-# # train the model with train subset
-# svm_model.train(df.ix[training_mask]['hog_values'],
-#                 df.ix[training_mask]['label'], params=svm_params)

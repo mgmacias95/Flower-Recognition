@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import pandas as pd
 
 # Labels of the differents class
 labels = [

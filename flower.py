@@ -19,8 +19,8 @@ images = [cv2.imread('Dataset/image_'+'%0*d'%(4,i)+'.jpg',
 TR_SIZE = 0.85
 
 # do a subset for train and test
-training_mask = np.random.choice(len(images), size=int(len(images)*TR_SIZE), 
-                                 replace=False)
+# training_mask = np.random.choice(len(images), size=int(len(images)*TR_SIZE),
+#                                  replace=False)
 
 # Compute the hog descriptor for an image
 def hog_descriptor(image, n_bins = 16):
@@ -43,11 +43,30 @@ def hog_descriptor(image, n_bins = 16):
     # And return an array with the histogram
     return np.hstack(histogram)
 
+
+def create_train_subset():
+    subset = []
+    for i in range(0,1360,80):
+        subset += np.random.randint(low=i,high=i+80,size=4).tolist()
+
+    return np.array(subset)
+
+
+test_mask = create_train_subset()
+aux = np.arange(1360)
+training_mask = np.in1d(aux, test_mask) * 1
+training_mask = np.where(training_mask == 0)[0]
+
 # train a model
-def train_model(model, label, data, training_mask=training_mask, 
+def train_model(model, label, data, mask=training_mask,
                 lay=cv2.ml.ROW_SAMPLE):
-    model.train(samples=data[training_mask], layout=lay, 
-                responses=label[training_mask])
+    model.train(samples=data[mask], layout=lay,
+                responses=label[mask])
+
+
+def predict_model(model, label, data, mask):
+    return model.predict(samples=data[mask], results = label[mask])
+
 
 # We create two arrays that store the label of the images,
 # and the result of the HOG descriptor
@@ -63,13 +82,22 @@ df_data_array = np.array(df_data, np.float32)
 df_data.clear()
 
 # Declare SVM model
+
 svm_model = cv2.ml.SVM_create()
-svm_model.setGamma(5.4)
-svm_model.setC(2.67)
-svm_model.setNu(0.05)
+svm_model.setGamma(0.1)
+svm_model.setC(3.01)
+svm_model.setNu(0.68)
 svm_model.setKernel(cv2.ml.SVM_RBF)
 svm_model.setType(cv2.ml.SVM_NU_SVC)
 
 # train the svm model
 train_model(model=svm_model, label=df_labels, data=df_data_array)
+results = predict_model(svm_model, df_labels, df_data_array, mask=training_mask)
+train_error = ((df_labels[training_mask]-results[1])**2).mean(axis=None)
+print("Error en train = ", train_error)
+# test the svm model
+
+test_results = predict_model(svm_model, df_labels, df_data_array, mask=test_mask)
+test_error = ((df_labels[test_mask]-test_results[1])**2).mean(axis=None)
+print("Error en test = ", test_error)
 

@@ -47,14 +47,4 @@ test_results_rt = predict_model(model=rt_model, label=df_labels, data=df_data_ar
 test_error_rt = error(df_labels[test_mask], test_results_rt[1])
 print("Error en test de Random Forest = ", test_error_rt)
 
-# ---------------------- Applying k-means to create clusters -------------------------------------- #
-# Define criteria = ( type, max_iter = 10 , epsilon = 1.0 )
-criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-
-# Set flags (Just to avoid line break in the code)
-flags = cv2.KMEANS_RANDOM_CENTERS
-
-# Apply KMeans
-compactness, labels, centers = cv2.kmeans(data=df_labels, K=17, bestLabels=None, criteria=criteria,
-                                          attempts=10, flags=flags)
 

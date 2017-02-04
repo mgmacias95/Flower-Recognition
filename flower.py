@@ -18,10 +18,6 @@ images = [cv2.imread('Dataset/image_'+'%0*d'%(4,i)+'.jpg',
 # % of the training subset size over the hole dataset
 TR_SIZE = 0.85
 
-# do a subset for train and test
-# training_mask = np.random.choice(len(images), size=int(len(images)*TR_SIZE),
-#                                  replace=False)
-
 # Compute the hog descriptor for an image
 def hog_descriptor(image, n_bins = 16):
     # We get the derivatives of the image

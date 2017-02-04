@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-from flower import *
 
 def kmeans_clusters(df_labels):
     # Define criteria = ( type, max_iter = 10 , epsilon = 1.0 )

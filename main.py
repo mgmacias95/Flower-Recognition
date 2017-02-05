@@ -2,7 +2,7 @@ import cv2
 import sys
 import numpy as np
 import flower as fl
-import cluster_bow as cb
+
 
 if __name__ == '__main__':
     # Check the parameters

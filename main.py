@@ -23,10 +23,8 @@ if __name__ == '__main__':
 
     # num_photos_per_class = 80
 
-
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the
     # labels and histograms of every class
 
-
-    bag_of_words = fl.create_bag_of_words(images, sys.argv[1].upper())
+    BOW = fl.create_bag_of_words(images, sys.argv[1].upper())

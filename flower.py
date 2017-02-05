@@ -50,7 +50,7 @@ def create_train_subset():
 """
 function to create an unclustered vocabulary using Feature2D descriptors.
 """
-def create_bag_of_words(images, detector_type, k_size = 500):
+def create_bag_of_words(images, detector_type, k_size = 100):
     # Create an empty vocabulary with BOWKMeans
     vocabulary = cv2.BOWKMeansTrainer(clusterCount=k_size)
 

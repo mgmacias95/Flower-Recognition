@@ -47,6 +47,20 @@ def create_SVM(gamma=0.1, C=3.01, Nu=0.68,
 
     return svm_model
 
+
+"""
+generate numeric labels
+"""
+def generate_num_labels(num_classes=17, num_photos_class=80):
+
+    total = num_classes*num_photos_class
+    numeric_labels = np.zeros(total, np.int32)
+
+    for i in range(total):
+        numeric_labels[i] = i // num_photos_class
+
+    return numeric_labels
+
 # # train the svm model
 # train_model(model=svm_model, label=df_labels, data=df_data_array)
 # results = predict_model(svm_model, df_labels, df_data_array, mask=training_mask)

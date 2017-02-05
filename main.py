@@ -2,6 +2,7 @@ import cv2
 import sys
 import model as ml
 import flower as fl
+import numpy as np
 
 
 if __name__ == '__main__':
@@ -20,6 +21,9 @@ if __name__ == '__main__':
     # Load all the images
     images = [cv2.imread('Dataset/image_' + '%0*d' % (4, i) + '.jpg',
                          flags=cv2.IMREAD_COLOR) for i in range(1, 50)]
+
+    # create numeric labels for each class
+    nlabels = ml.generate_num_labels()
 
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the

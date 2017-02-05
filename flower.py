@@ -103,20 +103,27 @@ def convert_to_HSV_and_quantize(images, K=3, show_img=False,
         show(hsv[1])
 
     return np.array(hsv)
-#
-# test_mask = create_train_subset()
-# aux = np.arange(1360)
-# training_mask = np.in1d(aux, test_mask) * 1
-# training_mask = np.where(training_mask == 0)[0]
-#
-# # We create two arrays that store the label of the images,
-# # and the result of the HOG descriptor
-# df_labels = np.zeros(len(images), np.int32)
-# df_data   = []
-# # Fill the arrays
-# for i in range(len(images)):
-#     df_labels[i] = i//num_photos_per_class
-#     df_data.append(hog_descriptor(images[i]))
-#
-# df_data_array = np.array(df_data, np.float32)
-# df_data.clear()
+
+
+def compute_BOW_response(BOW, images, detector_type, training_subset):
+
+    # Create the Brute-Force Matcher
+    matcher = cv2.BFMatcher(crossCheck=True)
+
+    if detector_type == 'SURF':
+        detector = cv2.xfeatures2d.SURF_create()
+
+    elif detector_type == 'SIFT':
+        detector = cv2.xfeatures2d.SIFT_create()
+
+    elif detector_type == 'AKAZE':
+        detector = cv2.AKAZE_create()
+
+    elif detector_type == 'MSD':
+        detector = cv2.xfeatures2d.MSDDetector_create()
+
+    elif detector_type == 'FFD':
+        detector = cv2.FastFeatureDetector_create()
+
+    else:
+        raise ValueError('Not a suitable detector')

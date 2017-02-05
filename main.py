@@ -30,5 +30,19 @@ if __name__ == '__main__':
     # labels and histograms of every class
     BOW = fl.create_bag_of_words(images, sys.argv[1].upper())
 
-    svm = ml.create_SVM()
+    # # Declare the svm model
+    # svm = ml.create_SVM()
+    #
+    # # Declare the index for the training and test subset
+    # training, test = ml.generate_train_test_masks(len(images))
 
+    # # Train
+    # ml.train_model(model=svm, label=nlabels, data=BOW, mask=training)
+    # results = ml.predict_model(svm, nlabels, BOW, mask=training)
+    # print(results)
+    # train_error = ml.error(nlabels[training], results[1])
+    # print("Error en train = ", train_error)
+    # # test the svm model
+    # test_results = ml.predict_model(svm, nlabels, BOW, mask=test)
+    # test_error = ml.error(BOW[test], test_results[1])
+    # print("Error en test = ", test_error)

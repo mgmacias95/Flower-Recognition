@@ -26,3 +26,5 @@ if __name__ == '__main__':
     # labels and histograms of every class
     BOW = fl.create_bag_of_words(images, sys.argv[1].upper())
 
+    svm = ml.create_SVM()
+

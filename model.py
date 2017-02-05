@@ -36,12 +36,16 @@ def error(labels, results):
     return ((labels - results)**2).mean(axis=None)
 
 # Declare SVM model
-svm_model = cv2.ml.SVM_create()
-svm_model.setGamma(0.1)
-svm_model.setC(3.01)
-svm_model.setNu(0.68)
-svm_model.setKernel(cv2.ml.SVM_RBF)
-svm_model.setType(cv2.ml.SVM_NU_SVC)
+def create_SVM(gamma=0.1, C=3.01, Nu=0.68,
+               Kernel=cv2.ml.SVM_RBF, type=cv2.ml.SVM_NU_SVC):
+    svm_model = cv2.ml.SVM_create()
+    svm_model.setGamma(gamma)
+    svm_model.setC(C)
+    svm_model.setNu(Nu)
+    svm_model.setKernel(Kernel)
+    svm_model.setType(type)
+
+    return svm_model
 
 # # train the svm model
 # train_model(model=svm_model, label=df_labels, data=df_data_array)

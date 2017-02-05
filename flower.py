@@ -37,15 +37,6 @@ def hog_descriptor(image, n_bins = 16):
     # And return an array with the histogram
     return np.hstack(histogram)
 
-"""
-function to divide the data into test and training
-"""
-def create_train_subset():
-    subset = []
-    for i in range(0, 1360, 80):
-        subset += np.random.randint(low=i, high=i+80, size=4).tolist()
-
-    return np.array(subset)
 
 """
 function to create an unclustered vocabulary using Feature2D descriptors.
@@ -94,7 +85,7 @@ function that converts images to HSV color space and quantizes the color of the 
 The color quantization is based in this tutorial
 http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_ml/py_kmeans/py_kmeans_opencv/py_kmeans_opencv.html
 """
-def convert_to_HSV_anc_quantize(images, K=3, show_img=False,
+def convert_to_HSV_and_quantize(images, K=3, show_img=False,
                                 criteria=(cv2.TERM_CRITERIA_EPS +
                                           cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)):
     hsv = []

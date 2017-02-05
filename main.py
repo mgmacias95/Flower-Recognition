@@ -1,6 +1,6 @@
 import cv2
 import sys
-import numpy as np
+import model as ml
 import flower as fl
 
 
@@ -25,3 +25,4 @@ if __name__ == '__main__':
     # clustering to create the Bag Of Words and get the
     # labels and histograms of every class
     BOW = fl.create_bag_of_words(images, sys.argv[1].upper())
+

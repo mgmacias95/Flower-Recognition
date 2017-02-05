@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def kmeans_clusters(df_labels):
+def kmeans_clusters(data, k_size, n_attempts = 10):
     # Define criteria = ( type, max_iter = 10 , epsilon = 1.0 )
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
 
@@ -9,8 +9,10 @@ def kmeans_clusters(df_labels):
     flags = cv2.KMEANS_RANDOM_CENTERS
 
     # Apply KMeans
-    compactness, labels, centers = cv2.kmeans(data=df_labels, K=17, bestLabels=None, criteria=criteria,
-                                              attempts=10, flags=flags)
+    print(k_size)
+    compactness, labels, centers = cv2.kmeans(data=data, K=k_size,
+                                              bestLabels=None, criteria=criteria,
+                                              attempts=n_attempts, flags=flags)
 
     return compactness, labels, centers
 

@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+
 # % of the training subset size over the hole dataset
 TR_SIZE = 0.85
 index_img_name = 0
@@ -54,19 +55,19 @@ def create_unclustered_geometric_vocabulary(images, detector_type):
     vocabulary = []
 
     if detector_type == 'SURF':
-        detector = cv2.xfeature2d.SURF_create()
+        detector = cv2.xfeatures2d.SURF_create()
 
-    elif detector_type == 'SIFT:':
-        detector = cv2.xfeature2d.SIFT_create()
+    elif detector_type == 'SIFT':
+        detector = cv2.xfeatures2d.SIFT_create()
 
     elif detector_type == 'AKAZE':
-        detector = cv2.xfeature2d.AKAZE_create()
+        detector = cv2.xfeatures2d.AKAZE_create()
 
     elif detector_type == 'MSD':
-        detector = cv2.xfeature2d.MSDDetector_create()
+        detector = cv2.xfeatures2d.MSDDetector_create()
 
     elif detector_type == 'FFD':
-        detector = cv2.xfeature2d.FastFeatureDetector_create()
+        detector = cv2.xfeatures2d.FastFeatureDetector_create()
 
     else:
         raise ValueError('Not a suitable detector')
@@ -77,7 +78,8 @@ def create_unclustered_geometric_vocabulary(images, detector_type):
         keypoints, descriptor = detector.detectAndCompute(img, None)
         vocabulary.append(descriptor)
 
-    return np.array(vocabulary, dtype=np.float32)
+    return np.array(vocabulary)
+
 
 """
 function that converts images to HSV color space and quantizes the color of the images to simplify them.
@@ -102,7 +104,6 @@ def convert_to_HSV_anc_quantize(images, K=3, show_img=False,
         show(hsv[1])
 
     return np.array(hsv)
-
 #
 # test_mask = create_train_subset()
 # aux = np.arange(1360)

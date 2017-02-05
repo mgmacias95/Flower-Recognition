@@ -3,6 +3,17 @@ import numpy as np
 
 # % of the training subset size over the hole dataset
 TR_SIZE = 0.85
+index_img_name = 0
+
+def show(imagen, save=False):
+    if save:
+        global index_img_name
+        cv2.imwrite(filename="img"+str(index_img_name)+'.jpg', img=imagen)
+        index_img_name+=1
+    else:
+        cv2.imshow('image', imagen.astype(np.uint8))
+        cv2.waitKey()
+        cv2.destroyAllWindows()
 
 # Compute the hog descriptor for an image
 def hog_descriptor(image, n_bins = 16):
@@ -25,7 +36,9 @@ def hog_descriptor(image, n_bins = 16):
     # And return an array with the histogram
     return np.hstack(histogram)
 
-
+"""
+function to divide the data into test and training
+"""
 def create_train_subset():
     subset = []
     for i in range(0, 1360, 80):
@@ -33,7 +46,9 @@ def create_train_subset():
 
     return np.array(subset)
 
-
+"""
+function to create an unclustered vocabulary using Feature2D descriptors.
+"""
 def create_unclustered_geometric_vocabulary(images, detector_type):
     # Create an empty vocabulary
     vocabulary = []
@@ -64,10 +79,28 @@ def create_unclustered_geometric_vocabulary(images, detector_type):
 
     return np.array(vocabulary, dtype=np.float32)
 
-def convert_to_HSV(images):
+"""
+function that converts images to HSV color space and quantizes the color of the images to simplify them.
+The color quantization is based in this tutorial
+http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_ml/py_kmeans/py_kmeans_opencv/py_kmeans_opencv.html
+"""
+def convert_to_HSV_anc_quantize(images, K=8, show_img=False,
+                                criteria=(cv2.TERM_CRITERIA_EPS +
+                                          cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)):
     hsv = []
     for img in images:
-        hsv.append(cv2.cvtColor(src=img,code=cv2.COLOR_RGB2HSV))
+        h = cv2.cvtColor(src=img,code=cv2.COLOR_RGB2HSV).reshape(-1,3)
+        h = np.float32(h)
+        ret, label, center = cv2.kmeans(data=h, K=K, bestLabels=None, criteria=criteria, attempts=10,
+                                        flags=cv2.KMEANS_RANDOM_CENTERS)
+        center = np.uint8(center)
+        res = center[label.flatten()]
+        hsv.append(res.reshape((img.shape)))
+
+    # if the flag of showing an image is set, show the 1st one
+    if show_img:
+        show(hsv[0])
+
     return np.array(hsv)
 
 #

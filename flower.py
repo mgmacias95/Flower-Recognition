@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 
-
 # % of the training subset size over the hole dataset
 TR_SIZE = 0.85
 
@@ -64,6 +63,13 @@ def create_unclustered_geometric_vocabulary(images, detector_type):
         vocabulary.append(descriptor)
 
     return np.array(vocabulary, dtype=np.float32)
+
+def convert_to_HSV(images):
+    hsv = []
+    for img in images:
+        hsv.append(cv2.cvtColor(src=img,code=cv2.COLOR_RGB2HSV))
+    return np.array(hsv)
+
 #
 # test_mask = create_train_subset()
 # aux = np.arange(1360)

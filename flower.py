@@ -61,13 +61,13 @@ def create_bag_of_words(images, detector_type, k_size = 500):
         detector = cv2.xfeatures2d.SIFT_create()
 
     elif detector_type == 'AKAZE':
-        detector = cv2.xfeatures2d.AKAZE_create()
+        detector = cv2.AKAZE_create()
 
     elif detector_type == 'MSD':
         detector = cv2.xfeatures2d.MSDDetector_create()
 
     elif detector_type == 'FFD':
-        detector = cv2.xfeatures2d.FastFeatureDetector_create()
+        detector = cv2.FastFeatureDetector_create()
 
     else:
         raise ValueError('Not a suitable detector')

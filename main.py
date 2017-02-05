@@ -7,7 +7,7 @@ import cluster_bow as cb
 if __name__ == '__main__':
     # Check the parameters
     if len(sys.argv) < 2:
-        sys.exit('Usage: %s descriptor type' % sys.argv[0])
+        sys.exit('Usage: %s <descriptor type>' % sys.argv[0])
 
     # Labels of the differents class
     labels = [
@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     # Load all the images
     images = [cv2.imread('Dataset/image_' + '%0*d' % (4, i) + '.jpg',
-                         flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
+                         flags=cv2.IMREAD_COLOR) for i in range(1, 50)]
 
     # num_photos_per_class = 80
 

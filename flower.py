@@ -78,7 +78,7 @@ def create_unclustered_geometric_vocabulary(images, detector_type):
         keypoints, descriptor = detector.detectAndCompute(img, None)
         vocabulary.append(descriptor)
 
-    return np.array(vocabulary)
+    return np.array(vocabulary, dtype=np.ndarray)
 
 
 """

@@ -50,9 +50,9 @@ def create_train_subset():
 """
 function to create an unclustered vocabulary using Feature2D descriptors.
 """
-def create_unclustered_geometric_vocabulary(images, detector_type):
-    # Create an empty vocabulary
-    vocabulary = []
+def create_bag_of_words(images, detector_type, k_size = 500):
+    # Create an empty vocabulary with BOWKMeans
+    vocabulary = cv2.BOWKMeansTrainer(clusterCount=k_size)
 
     if detector_type == 'SURF':
         detector = cv2.xfeatures2d.SURF_create()
@@ -72,13 +72,21 @@ def create_unclustered_geometric_vocabulary(images, detector_type):
     else:
         raise ValueError('Not a suitable detector')
 
+    print("Creating the unclustered geometric vocabulary")
+
     for img in images:
         # Detect the keypoints on the image and
         # compute the descriptor for those keypoints
         keypoints, descriptor = detector.detectAndCompute(img, None)
-        vocabulary.append(descriptor)
+        vocabulary.add(descriptor)
 
-    return np.array(vocabulary, dtype=np.ndarray)
+    print("DONE!!")
+    print("Creating the clusters with K-means")
+    # K-Means clustering
+    BOW = vocabulary.cluster()
+    print("DONE!!")
+
+    return BOW
 
 
 """

@@ -24,17 +24,9 @@ if __name__ == '__main__':
     # num_photos_per_class = 80
 
 
-    # Create geometric vocabulary of the images
-    print("Creating the unclustered geometric vocabulary")
+    # Create geometric vocabulary of the images and then, we do K-Means
+    # clustering to create the Bag Of Words and get the
+    # labels and histograms of every class
 
-    unclustered_geom_vocabulary = fl.create_unclustered_geometric_vocabulary(images, sys.argv[1].upper())
-    print("DONE!!")
 
-    # Now, we must do clustering to create the Bag Of Words
-    # and get the labels and histograms of every class
-    print("Creating the clusters with K-means")
-
-    geom_compactness, geom_labels, geom_centers = cb.kmeans_clusters(data = unclustered_geom_vocabulary,
-                                                                     k_size = 500, # Number of words
-                                                                     n_attempts=10)
-    print("DONE!!")
+    bag_of_words = fl.create_bag_of_words(images, sys.argv[1].upper())

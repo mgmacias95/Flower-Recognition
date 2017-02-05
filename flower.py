@@ -84,7 +84,7 @@ function that converts images to HSV color space and quantizes the color of the 
 The color quantization is based in this tutorial
 http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_ml/py_kmeans/py_kmeans_opencv/py_kmeans_opencv.html
 """
-def convert_to_HSV_anc_quantize(images, K=8, show_img=False,
+def convert_to_HSV_anc_quantize(images, K=3, show_img=False,
                                 criteria=(cv2.TERM_CRITERIA_EPS +
                                           cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)):
     hsv = []
@@ -99,7 +99,7 @@ def convert_to_HSV_anc_quantize(images, K=8, show_img=False,
 
     # if the flag of showing an image is set, show the 1st one
     if show_img:
-        show(hsv[0])
+        show(hsv[1])
 
     return np.array(hsv)
 

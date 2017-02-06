@@ -51,10 +51,10 @@ def fit_and_error(model, data, labels, mask):
 """
 train and test a svm model
 """
-def svm(data, nlabels, training, test):
+def svm(data, nlabels, training, test, verbose=False):
     # Declare the svm models
-    svm_onevsall = SVC(cache_size=200, decision_function_shape='ovr')
-    svm_onevsone = SVC(cache_size=200, decision_function_shape='ovc')
+    svm_onevsall = SVC(cache_size=200, verbose=verbose, decision_function_shape='ovr')
+    svm_onevsone = SVC(cache_size=200, verbose=verbose, decision_function_shape='ovc')
     # Fit and get the error of the models
     error_onevsall = fit_and_error(model=svm_onevsall, data=data, labels=nlabels, mask=training)
     error_onevsone = fit_and_error(model=svm_onevsone, data=data, labels=nlabels, mask=training)

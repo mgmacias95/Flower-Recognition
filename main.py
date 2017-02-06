@@ -43,8 +43,16 @@ if __name__ == '__main__':
     # Declare the index for the training and test subset
     training, test = ml.generate_train_test_masks(len(images))
 
-    # Declare the svm model
+    # Declare the svm models
     svm_onevsall = SVC(cache_size=200, verbose=True, decision_function_shape='ovr')
     svm_onevsone = SVC(cache_size=200, verbose=True, decision_function_shape='ovc')
+    # Fit the models
+    svm_onevsall.fit(BOW_descriptors[training], nlabels[training])
+    svm_onevsone.fit(BOW_descriptors[training], nlabels[training])
+    # And get the training labels
+    train_labels_onevsall = svm_onevsall.predict()
+    train_labels_onevsone = svm_onevsone.predict()
+    # Compute the score of each model
+    train_error_onevsall = svm_onevsall.score(train_labels_onevsall, nlabels[training])
+    train_error_onevsone = svm_onevsone.score(train_labels_onevsone, nlabels[training])
 
-    # svm.fit(BOW_descriptors, )

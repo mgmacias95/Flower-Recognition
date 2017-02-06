@@ -145,7 +145,6 @@ def compute_BOW_response(BOW, images, detector_type,
     # Compute the histograms
     for img in images:
         BOW_descriptors.append(BOW_extractor.compute(img, detector.detect(img)))
-        i+=1
     print("DONE!!")
 
     return np.array(BOW_descriptors)

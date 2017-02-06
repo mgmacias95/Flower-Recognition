@@ -12,7 +12,7 @@ def train_model(images, nlabels):
     # labels and histograms of every class
     if not isfile("bow.npy"):
         x = time()
-        BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=50)
+        BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=100)
         y = time()
         print("Create BOW: ", y - x, ".s")
         w = time()
@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     # Load all the images
     images = [cv2.imread('Dataset/image_' + '%0*d' % (4, i) + '.jpg',
-                         flags=cv2.IMREAD_COLOR) for i in range(1, 1360)]
+                         flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
 
     # create numeric labels for each class
     nlabels = ml.generate_num_labels()

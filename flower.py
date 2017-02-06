@@ -41,7 +41,7 @@ def hog_descriptor(image, n_bins = 16):
 """
 function to create an unclustered vocabulary using Feature2D descriptors.
 """
-def create_bag_of_words(images, detector_type, k_size = 100):
+def create_bag_of_words(images, detector_type, k_size = 10):
     # Create an empty vocabulary with BOWKMeans
     vocabulary = cv2.BOWKMeansTrainer(clusterCount=k_size)
 
@@ -65,10 +65,14 @@ def create_bag_of_words(images, detector_type, k_size = 100):
 
     print("Creating the unclustered geometric vocabulary")
 
+    descriptors, keypoints = [], []
+
     for img in images:
         # Detect the keypoints on the image and
         # compute the descriptor for those keypoints
-        keypoints, descriptor = detector.detectAndCompute(img, None)
+        kp, descriptor = detector.detectAndCompute(img, None)
+        descriptors.append(descriptor)
+        keypoints.append(kp)
         vocabulary.add(descriptor)
 
     print("DONE!!")
@@ -77,7 +81,7 @@ def create_bag_of_words(images, detector_type, k_size = 100):
     BOW = vocabulary.cluster()
     print("DONE!!")
 
-    return BOW
+    return BOW, keypoints, descriptors
 
 
 """
@@ -105,10 +109,11 @@ def convert_to_HSV_and_quantize(images, K=3, show_img=False,
     return np.array(hsv)
 
 
-def compute_BOW_response(BOW, images, detector_type, training_subset):
+def compute_BOW_response(BOW, images, detector_type,
+                         keypoints, descriptors):
 
     # Create the Brute-Force Matcher
-    matcher = cv2.BFMatcher(crossCheck=True)
+    matcher = cv2.BFMatcher(normType=cv2.NORM_L2, crossCheck=True)
 
     if detector_type == 'SURF':
         detector = cv2.xfeatures2d.SURF_create()
@@ -127,3 +132,21 @@ def compute_BOW_response(BOW, images, detector_type, training_subset):
 
     else:
         raise ValueError('Not a suitable detector')
+
+    BOW_extractor = cv2.BOWImgDescriptorExtractor(dextractor=detector,
+                                                  dmatcher=matcher)
+
+    # Set the vocabulary for the BOW extractor,
+    # in order to compute the histograms for the images
+    BOW_extractor.setVocabulary(BOW)
+    BOW_descriptors = []
+
+
+    print("Computing the descriptors for the images")
+    # Compute the histograms
+    for img, kp in zip(images, keypoints):
+        BOW_descriptors.append(BOW_extractor.compute(img, kp))
+
+    print("DONE!!")
+
+    return BOW_descriptors

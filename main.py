@@ -28,8 +28,10 @@ if __name__ == '__main__':
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the
     # labels and histograms of every class
-    BOW = fl.create_bag_of_words(images, sys.argv[1].upper())
+    BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper())
 
+    BOW_descriptors = fl.compute_BOW_response(BOW, images, sys.argv[1].upper(),
+                                              keypoints, descriptors)
     # # Declare the svm model
     # svm = ml.create_SVM()
     #

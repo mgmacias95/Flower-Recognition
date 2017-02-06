@@ -81,7 +81,7 @@ def create_bag_of_words(images, detector_type, k_size = 10):
     BOW = vocabulary.cluster()
     print("DONE!!")
 
-    return BOW, keypoints, descriptors
+    return BOW.astype(np.float32), keypoints, descriptors
 
 
 """
@@ -113,7 +113,7 @@ def compute_BOW_response(BOW, images, detector_type,
                          keypoints, descriptors):
 
     # Create the Brute-Force Matcher
-    matcher = cv2.BFMatcher(normType=cv2.NORM_L2, crossCheck=True)
+    matcher = cv2.BFMatcher(normType=cv2.NORM_L2)
 
     if detector_type == 'SURF':
         detector = cv2.xfeatures2d.SURF_create()
@@ -144,8 +144,9 @@ def compute_BOW_response(BOW, images, detector_type,
 
     print("Computing the descriptors for the images")
     # Compute the histograms
-    for img, kp in zip(images, keypoints):
-        BOW_descriptors.append(BOW_extractor.compute(img, kp))
+    for img in images:
+
+        BOW_descriptors.append(BOW_extractor.compute(img, detector.detect(img)))
 
     print("DONE!!")
 

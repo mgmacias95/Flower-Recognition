@@ -3,8 +3,25 @@ import sys
 import model as ml
 import flower as fl
 from time import time
-import numpy as np
-from sklearn.svm import SVC
+
+def train_model(images, nlabels):
+    # Create geometric vocabulary of the images and then, we do K-Means
+    # clustering to create the Bag Of Words and get the
+    # labels and histograms of every class
+    x = time()
+    BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=50)
+    y = time()
+    print("Create BOW: ", y - x, ".s")
+    w = time()
+    BOW_descriptors = fl.compute_BOW_response(BOW, images, sys.argv[1].upper(),
+                                              keypoints, descriptors)
+    z = time()
+    print("Create BOW: ", w - z, ".s")
+
+    # Declare the index for the training and test subset
+    training, test = ml.generate_train_test_masks(len(images))
+
+    errors = ml.svm(BOW_descriptors=BOW_descriptors, nlabels=nlabels, training=training, test=test)
 
 
 if __name__ == '__main__':
@@ -27,32 +44,10 @@ if __name__ == '__main__':
     # create numeric labels for each class
     nlabels = ml.generate_num_labels()
 
-    # Create geometric vocabulary of the images and then, we do K-Means
-    # clustering to create the Bag Of Words and get the
-    # labels and histograms of every class
-    x=time()
-    BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=50)
-    y=time()
-    print("Create BOW: ", y-x, ".s")
-    w=time()
-    BOW_descriptors = fl.compute_BOW_response(BOW, images, sys.argv[1].upper(),
-                                              keypoints, descriptors)
-    z=time()
-    print("Create BOW: ", w - z, ".s")
+    # train with images without any color modification
+    train_model(images=images, nlabels=nlabels)
 
-    # Declare the index for the training and test subset
-    training, test = ml.generate_train_test_masks(len(images))
+    # train with color quantization
+    train_model(images=fl.convert_to_HSV_and_quantize(images=images), nlabels=nlabels)
 
-    # Declare the svm models
-    svm_onevsall = SVC(cache_size=200, verbose=True, decision_function_shape='ovr')
-    svm_onevsone = SVC(cache_size=200, verbose=True, decision_function_shape='ovc')
-    # Fit the models
-    svm_onevsall.fit(BOW_descriptors[training], nlabels[training])
-    svm_onevsone.fit(BOW_descriptors[training], nlabels[training])
-    # And get the training labels
-    train_labels_onevsall = svm_onevsall.predict()
-    train_labels_onevsone = svm_onevsone.predict()
-    # Compute the score of each model
-    train_error_onevsall = svm_onevsall.score(train_labels_onevsall, nlabels[training])
-    train_error_onevsone = svm_onevsone.score(train_labels_onevsone, nlabels[training])
 

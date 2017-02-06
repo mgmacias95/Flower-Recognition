@@ -3,26 +3,33 @@ import sys
 import model as ml
 import flower as fl
 from time import time
+from os.path import isfile
+import numpy as np
 
 def train_model(images, nlabels):
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the
     # labels and histograms of every class
-    x = time()
-    BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=50)
-    y = time()
-    print("Create BOW: ", y - x, ".s")
-    w = time()
-    BOW_descriptors = fl.compute_BOW_response(BOW, images, sys.argv[1].upper(),
-                                              keypoints, descriptors)
-    z = time()
-    print("Create BOW: ", w - z, ".s")
+    if not isfile("bow.npy"):
+        x = time()
+        BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=50)
+        y = time()
+        print("Create BOW: ", y - x, ".s")
+        w = time()
+        BOW_descriptors = fl.compute_BOW_response(BOW, images, sys.argv[1].upper(),
+                                                  keypoints, descriptors)
+        np.save(file="bow", arr=BOW_descriptors)
+        z = time()
+        print("Create BOW: ", w - z, ".s")
+    else:
+        BOW_descriptors = np.load("bow.npy")
 
+    data = BOW_descriptors.reshape(BOW_descriptors.shape[0], -1)
     # Declare the index for the training and test subset
     training, test = ml.generate_train_test_masks(len(images))
 
-    errors_svm = ml.svm(BOW_descriptors=BOW_descriptors, nlabels=nlabels, training=training, test=test)
-    errors_rf = ml.rf(BOW_descriptors=BOW_descriptors, nlabels=nlabels, training=training, test=test)
+    errors_svm = ml.svm(data=data, nlabels=nlabels, training=training, test=test)
+    errors_rf = ml.rf(data=data, nlabels=nlabels, training=training, test=test)
 
 
 if __name__ == '__main__':

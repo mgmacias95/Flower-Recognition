@@ -21,7 +21,8 @@ def train_model(images, nlabels):
     # Declare the index for the training and test subset
     training, test = ml.generate_train_test_masks(len(images))
 
-    errors = ml.svm(BOW_descriptors=BOW_descriptors, nlabels=nlabels, training=training, test=test)
+    errors_svm = ml.svm(BOW_descriptors=BOW_descriptors, nlabels=nlabels, training=training, test=test)
+    errors_rf = ml.rf(BOW_descriptors=BOW_descriptors, nlabels=nlabels, training=training, test=test)
 
 
 if __name__ == '__main__':

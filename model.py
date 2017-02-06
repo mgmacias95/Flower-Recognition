@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
 
 """
 function to divide the data into test and training
@@ -63,3 +64,20 @@ def svm(BOW_descriptors, nlabels, training, test):
     error_onevsone_test = fit_and_error(model=svm_onevsone, data=BOW_descriptors, labels=nlabels, mask=test)
     print("Error en training:\n\tOne VS All: \t", error_onevsall_test, "\n\tOne VS One: \t", error_onevsone_test)
     return error_onevsall, error_onevsone, error_onevsall_test, error_onevsone_test
+
+"""
+train and test a random forest model
+"""
+def rf(BOW_descriptors, nlabels, training, test):
+    # declare the rf model
+    rfb = RandomForestClassifier(n_jobs=-1)
+    rfn = RandomForestClassifier(n_jobs=-1, bootstrap=False)
+    # fit both models and get its error
+    error_boots = fit_and_error(model=rfb, data=BOW_descriptors, labels=nlabels, mask=training)
+    error_noboots = fit_and_error(model=rfn, data=BOW_descriptors, labels=nlabels, mask=training)
+    print("Error en training:\n\tWith Bootstrap:\t",error_boots,"\n\tWithout Bootstrap:\t",error_noboots)
+    # fit both models and get its test error
+    error_boots_test = fit_and_error(model=rfb, data=BOW_descriptors, labels=nlabels, mask=test)
+    error_noboots_test = fit_and_error(model=rfn, data=BOW_descriptors, labels=nlabels, mask=test)
+    print("Error en test:\n\tWith Bootstrap:\t", error_boots_test, "\n\tWithout Bootstrap:\t", error_noboots_test)
+    return error_boots, error_noboots, error_boots_test, error_noboots_test

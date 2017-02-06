@@ -24,7 +24,7 @@ def train_model(images, nlabels):
     else:
         BOW_descriptors = np.load("bow.npy")
 
-    data = BOW_descriptors.reshape(BOW_descriptors.shape[0], -1)
+    data = BOW_descriptors.reshape(BOW_descriptors.shape[0], BOW_descriptors.shape[2])
     # Declare the index for the training and test subset
     training, test = ml.generate_train_test_masks(len(images))
 

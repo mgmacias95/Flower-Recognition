@@ -34,7 +34,7 @@ def train_model(images, nlabels, bow_filename="bow"):
     ml.cv_rf(data, nlabels, 30)
     ml.cv_svm(data, nlabels, 30)
 
-    ml.paint_roc_curve(data=data, labels=nlabels, model=errors_svm[0], training=training, test=test)
+    ml.paint_roc_curve(data=data, labels=nlabels, model=errors_rf[0], training=training, test=test, svm=False)
 
 if __name__ == '__main__':
     # Check the parameters

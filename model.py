@@ -5,6 +5,8 @@ from sklearn.model_selection import cross_val_score
 # paint ROC curve
 from sklearn.metrics import roc_curve, auc
 from sklearn.preprocessing import label_binarize
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
 
 """
@@ -90,11 +92,18 @@ def rf(data, nlabels, training, test):
 """
 paint a ROC curve
 """
-def paint_roc_curve(data, labels, model, training, test, n_classes=17):
+def paint_roc_curve(data, labels, model, training, test, svm=True, n_classes=17,):
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
-    y_score = model.fit(X=data[training], y=labels[training]).decision_function(data[test])
+    if svm:
+        y_score = model.fit(X=data[training], y=labels[training]).decision_function(data[test])
+    else:
+        rt_lm = LogisticRegression()
+        pipeline = make_pipeline(model, rt_lm)
+        pipeline.fit(data[training],labels[training])
+        y_score = pipeline.predict_proba(data[test])
+
     y = label_binarize(y=labels, classes=list(range(n_classes)))
     for i in range(n_classes):
         fpr[i], tpr[i], _ = roc_curve(y[test][:,i], y_score[:,i])

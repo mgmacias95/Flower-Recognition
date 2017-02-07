@@ -198,6 +198,37 @@ Esta función de OpenCV, ya implementa el método de clustering utilizando multi
 Una vez construida la bolsa de palabras, tenemos ver con qué fuerza vota cada una de las imágenes para las distintas palabras que hemos extraído. Para ello, utilizaremos la función de OpenCV \texttt{BOWImgDescriptorExtractor}, que necesita un detector de puntos, que crearemos del mismo tipo que se usó para la construcción del vocabulario, y un \textit{matcher}. En este caso, usaremos un \textit{matcher} basado en fuerza fuerza bruta.
 Con todo esto, podremos calcular el histograma para cada imagen y obtener el descriptor para cada una de ellas, haciendo uso de la función de OpenCV compute que utiliza la imagen y el detector para obtener los \textit{KeyPoints} y computar el histograma.
 
+\subsection{Pruebas}
+
+En esta última parte, para probar cómo de efectivos han sido los datos extraídos. Para ello, se han usado dos algoritmos de aprendizaje automático, dos \textit{Support Vector Machine} (SVM), uno siguiendo el método \textit{one-vs-all} y otro, el método \textit{one-vs-one}, y dos \textit{Random Forest}, uno aplicando \textit{bootsting} y otro sin aplicarlo. La ejecución de un modelo u otro no requiere más de 5 minutos, gracias a que cada algoritmo se ejecuta de forma paralela.
+
+Para comprobar la eficacia de los modelos, usaremos validación cruzada al tener un conjunto de datos pequeño ($n=1360$).
+
+También se han realizado pruebas para ver cómo la decisión de tomar un descriptor u otro afecta a la calidad del clasificador.
+
+\section{Experimentación}
+
+El conjunto de datos dispone un total de 1360 imágenes de tamaños más o menos similares, generalmente de $600\times500$ aproximadamente, con la centrada en el centro. Las principales dificultades que tienen las imágenes, es que las flores aparecen en las imágenes, no son tomadas desde el mismo ángulo, sino que aparecen imágenes de flores pertenecientes a la misma especie, tomadas desde distintos ángulos, y en ocasiones, con distinta luz, además de las propias diferencias que pueden existir entre flores distintos individuos de la misma especie.
+
+Para empezar, decidimos usar el descriptor de SIFT para extraer los \textit{KeyPoints} de cada imagen y sus respectivos descriptores para poder crear diccionario de palabras.
+
+Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones cambiando el tamaño de $k$ en el intervalo $[20,1000]$. El tiempo de ejecución del clustering, dependiendo del tamaño, pero para $k=1000$ supone un tiempo de 30 minutos aproximadamente.
+
+Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res1]{Tabla \ref*{res1}}:
+
+\begin{table}[H]
+  \begin{tabular}{l|r}
+    \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
+    \hline
+    \textit{SVM one-vs-all} & $\qquad$ 0.63 \\
+    \textit{SVM one-vs-one} & $\qquad$ 0.63 \\
+    \textit{RF con bootsting} & $\qquad$ 0.65 \\
+    \textit{RF sin bootsting} & $\qquad$ 0.59 \\
+  \end{tabular}
+  \label{res1}
+  \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
+\end{table}
+
 \bibliography{citations} %archivo citas.bib que contiene las entradas 
 \bibliographystyle{plain} % hay varias formas de citar
 

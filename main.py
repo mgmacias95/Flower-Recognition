@@ -45,6 +45,9 @@ def train_both_models(nlabels):
     training, test = ml.generate_train_test_masks(size=len(images))
 
     errors_svm = ml.svm(data=both, nlabels=nlabels, training=training, test=test)
+    errors_rf = ml.rf(data=both, nlabels=nlabels, training=training, test=test)
+    ml.cv_rf(both, nlabels, 30)
+    ml.cv_svm(both, nlabels, 30)
 
 if __name__ == '__main__':
     # Check the parameters

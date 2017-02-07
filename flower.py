@@ -51,15 +51,6 @@ def create_bag_of_words(images, detector_type, k_size = 10):
     elif detector_type == 'SIFT':
         detector = cv2.xfeatures2d.SIFT_create()
 
-    elif detector_type == 'AKAZE':
-        detector = cv2.AKAZE_create()
-
-    elif detector_type == 'MSD':
-        detector = cv2.xfeatures2d.MSDDetector_create()
-
-    elif detector_type == 'FFD':
-        detector = cv2.FastFeatureDetector_create()
-
     else:
         raise ValueError('Not a suitable detector')
 
@@ -125,15 +116,6 @@ def compute_BOW_response(BOW, images, detector_type,
 
     elif detector_type == 'SIFT':
         detector = cv2.xfeatures2d.SIFT_create()
-
-    elif detector_type == 'AKAZE':
-        detector = cv2.AKAZE_create()
-
-    elif detector_type == 'MSD':
-        detector = cv2.xfeatures2d.MSDDetector_create()
-
-    elif detector_type == 'FFD':
-        detector = cv2.FastFeatureDetector_create()
 
     else:
         raise ValueError('Not a suitable detector')

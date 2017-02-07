@@ -218,7 +218,7 @@ Para empezar, decidimos usar el descriptor de SIFT para extraer los \textit{KeyP
 
 Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones cambiando el tamaño de $k$ en el intervalo $[20,1000]$. El tiempo de ejecución del clustering depende del tamaño, pero para $k=1000$ supone un tiempo de 30 minutos aproximadamente.
 
-Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res1]{Tabla \ref*{res1}}:
+Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res1]{Tabla \ref*{res1}}.
 
 \begin{table}[H]
   \begin{tabular}{l|r}
@@ -235,6 +235,8 @@ Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la
 
 \subsection{Imágenes con procesamiento \textit{Color Quantization}}
 
+Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res2]{Tabla \ref*{res2}}. Como vemos, los resultados en este caso han empeorado con respecto al experimento anterior. Esto se debe a que al aplanar la imagen perdemos muchos detalles tales como el pistilo
+
 \begin{table}[H]
   \begin{tabular}{l|r}
     \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
@@ -250,6 +252,8 @@ Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la
 
 \subsection{Usando información de los dos experimentos anteriores}
 
+Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res3]{Tabla \ref*{res3}}.
+
 \begin{table}[H]
   \begin{tabular}{l|r}
     \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
@@ -259,7 +263,7 @@ Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la
     \textit{RF con bootsting} & $\qquad$ 0.65 \\
     \textit{RF sin bootsting} & $\qquad$ 0.65 \\
   \end{tabular}
-  \label{res2}
+  \label{res3}
   \caption{Tasa de aciertos de los algoritmos usando la información de los dos experimentos anteriores.}
 \end{table}
 

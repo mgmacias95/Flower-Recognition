@@ -141,14 +141,15 @@ def compute_BOW_response(BOW, images, detector_type,
     # Set the vocabulary for the BOW extractor,
     # in order to compute the histograms for the images
     BOW_extractor.setVocabulary(BOW)
-    BOW_descriptors = np.empty([1360, k_size])
+    BOW_descriptors = np.zeros([1360, k_size], dtype=np.float32)
+    print(BOW_descriptors.shape)
 
     print("Computing the descriptors for the images")
     # Compute the histograms
     i = 0
     for img in images:
         hist = BOW_extractor.compute(img, detector.detect(img))
-        BOW_descriptors[i] = hist[0]
+        BOW_descriptors[i] = hist[0].flatten()
         i+=1
     print("DONE!!")
 

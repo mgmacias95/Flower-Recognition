@@ -46,7 +46,7 @@ train a model
 def fit_and_error(model, data, labels, mask):
     model.fit(X=data[mask], y=labels[mask])
     fit_labels = model.predict(data[mask])
-    return model.score(X=fit_labels, y=labels[mask])
+    return fit_labels
 
 """
 train and test a svm model

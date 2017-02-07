@@ -21,16 +21,18 @@ def train_model(images, nlabels, bow_filename="bow"):
                                                   keypoints, descriptors, k_size)
         np.save(file=bow_filename, arr=BOW_descriptors)
         z = time()
-        print("Create BOW: ", w - z, ".s")
+        print("Create BOW: ", z - w, ".s")
     else:
         BOW_descriptors = np.load(bow_filename+".npy")
     data = BOW_descriptors
     # data = BOW_descriptors.reshape(BOW_descriptors.shape[0], BOW_descriptors.shape[2])
     # Declare the index for the training and test subset
-    training, test = ml.generate_train_test_masks(len(images))
+    # training, test = ml.generate_train_test_masks(len(images))
 
-    errors_svm = ml.svm(data=data, nlabels=nlabels, training=training, test=test)
-    errors_rf = ml.rf(data=data, nlabels=nlabels, training=training, test=test)
+    # errors_svm = ml.svm(data=data, nlabels=nlabels, training=training, test=test)
+    # errors_rf = ml.rf(data=data, nlabels=nlabels, training=training, test=test)
+    ml.cv_rf(data, nlabels, 30)
+    ml.cv_svm(data, nlabels, 30)
 
 
 if __name__ == '__main__':
@@ -55,11 +57,11 @@ if __name__ == '__main__':
 
     # train with images without any color modification
     train_model(images=images, nlabels=nlabels)
-
     # train with color quantization
     if not isfile("ColorQuantization/image_0001.jpg"):
         qimages = fl.convert_to_HSV_and_quantize(images=images)
     else:
         qimages = [cv2.imread('ColorQuantization/image_' + '%0*d' % (4, i) + '.jpg',
                              flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
+
     train_model(images=qimages, nlabels=nlabels, bow_filename="bow_hsv")

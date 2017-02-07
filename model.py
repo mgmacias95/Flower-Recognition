@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
-
+from sklearn.model_selection import cross_val_score
 """
 function to divide the data into test and training
 """
@@ -81,3 +81,34 @@ def rf(data, nlabels, training, test):
     error_noboots_test = fit_and_error(model=rfn, data=data, labels=nlabels, mask=test)
     print("Error en test:\n\tWith Bootstrap:\t", error_boots_test, "\n\tWithout Bootstrap:\t", error_noboots_test)
     return error_boots, error_noboots, error_boots_test, error_noboots_test
+
+
+"""
+Cross validation functions to test SVM and RF
+"""
+def cv_rf(data,nlabels, kfold):
+    rfb = RandomForestClassifier(n_estimators=60, criterion="entropy", oob_score=True, n_jobs=-1)
+    rfn = RandomForestClassifier(n_estimators=60, criterion="entropy", oob_score=False, n_jobs=-1, bootstrap=False)
+    scoresrfb = cross_val_score(rfb, data, nlabels, cv=kfold)
+    scoresrfn = cross_val_score(rfn, data, nlabels, cv=kfold)
+    print("Random Forest cross validation accuracy:")
+    print("\tWith boosting")
+    print("\t\tBest: %0.2f" % scoresrfb.max())
+    print("\t\tAccuracy: %0.2f (+/- %0.2f)" % (scoresrfb.mean(), scoresrfb.std() * 2))
+    print("\tWithout boosting")
+    print("\t\tBest: %0.2f" % scoresrfn.max())
+    print("\t\tAccuracy: %0.2f (+/- %0.2f)" % (scoresrfn.mean(), scoresrfn.std() * 2))
+
+
+def cv_svm(data, nlabels, kfold):
+    svm_onevsall = SVC(cache_size=200, C=180, gamma=0.5, tol=1e-7, shrinking=False, decision_function_shape='ovr')
+    svm_onevsone = SVC(cache_size=200, C=180, gamma=0.5, tol=1e-7, shrinking=False, decision_function_shape='ovo')
+    print("SVM cross validation accuracy:")
+    scores_onevsall = cross_val_score(svm_onevsall, data, nlabels, cv=kfold)
+    print("\tSVM one vs all:")
+    print("\t\tBest: %0.2f"%scores_onevsall.max())
+    print("\t\tAccuracy: %0.2f (+/- %0.2f)" % (scores_onevsall.mean(), scores_onevsall.std() * 2))
+    scores_onevsone = cross_val_score(svm_onevsone, data, nlabels, cv=kfold)
+    print("\tSVM one vs one:")
+    print("\t\tBest: %0.2f"%scores_onevsone.max())
+    print("\t\tAccuracy: %0.2f (+/- %0.2f)" % (scores_onevsone.mean(), scores_onevsone.std() * 2))

@@ -235,7 +235,33 @@ Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la
 
 \subsection{Imágenes con procesamiento \textit{Color Quantization}}
 
+\begin{table}[H]
+  \begin{tabular}{l|r}
+    \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
+    \hline
+    \textit{SVM one-vs-all} & $\qquad$ 0.47 \\
+    \textit{SVM one-vs-one} & $\qquad$ 0.47 \\
+    \textit{RF con bootsting} & $\qquad$ 0.47 \\
+    \textit{RF sin bootsting} & $\qquad$ 0.47 \\
+  \end{tabular}
+  \label{res2}
+  \caption{Tasa de aciertos de los algoritmos usando imágenes con \textit{Color Quantization}.}
+\end{table}
+
 \subsection{Usando información de los dos experimentos anteriores}
+
+\begin{table}[H]
+  \begin{tabular}{l|r}
+    \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
+    \hline
+    \textit{SVM one-vs-all} & $\qquad$ 0.63 \\
+    \textit{SVM one-vs-one} & $\qquad$ 0.63 \\
+    \textit{RF con bootsting} & $\qquad$ 0.65 \\
+    \textit{RF sin bootsting} & $\qquad$ 0.65 \\
+  \end{tabular}
+  \label{res2}
+  \caption{Tasa de aciertos de los algoritmos usando la información de los dos experimentos anteriores.}
+\end{table}
 
 \bibliography{citations} %archivo citas.bib que contiene las entradas 
 \bibliographystyle{plain} % hay varias formas de citar

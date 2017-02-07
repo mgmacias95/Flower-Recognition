@@ -6,8 +6,7 @@ from time import time
 from os.path import isfile
 import numpy as np
 
-def train_model(images, nlabels, bow_filename="bow", roc_filename="roc"):
-    k_size=20
+def train_model(images, nlabels, bow_filename="bow", roc_filename="roc", k_size=20):
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the
     # labels and histograms of every class
@@ -39,7 +38,7 @@ def train_model(images, nlabels, bow_filename="bow", roc_filename="roc"):
                        filename=roc_filename, svm_list=[True, True, False, False],
                        label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
 
-def train_both_models(nlabels):
+def train_both_models(nlabels, roc_filename):
     data = np.load("bow.npy")
     qdata = np.load("bow_hsv.npy")
     both = np.concatenate((data, qdata), axis=1)
@@ -51,7 +50,7 @@ def train_both_models(nlabels):
 
     ml.paint_roc_curve(data=data, labels=nlabels, training=training, test=test,
                        model_list=[svm[0], svm[1], rf[0], rf[1]],
-                       filename="both", svm_list=[True, True, False, False],
+                       filename=roc_filename, svm_list=[True, True, False, False],
                        label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
 
 if __name__ == '__main__':
@@ -71,18 +70,25 @@ if __name__ == '__main__':
     images = [cv2.imread('Dataset/image_' + '%0*d' % (4, i) + '.jpg',
                          flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
 
-    # create numeric labels for each class
-    nlabels = ml.generate_num_labels()
-
-    # train with images without any color modification
-    train_model(images=images, nlabels=nlabels, roc_filename="shape")
-    # train with color quantization
     if not isfile("ColorQuantization/image_0001.jpg"):
         qimages = fl.convert_to_HSV_and_quantize(images=images)
     else:
         qimages = [cv2.imread('ColorQuantization/image_' + '%0*d' % (4, i) + '.jpg',
                              flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
+    # create numeric labels for each class
+    nlabels = ml.generate_num_labels()
 
-    train_model(images=qimages, nlabels=nlabels, bow_filename="bow_hsv", roc_filename="color")
+    ks = [20, 200, 500, 1000]
 
-    train_both_models(nlabels)
+    for k in ks:
+        bfilename = "bow_"+sys.argv[1].lower()+"_"+str(k)
+        bhfilename = "bow_hsv_"+sys.argv[1].lower()+"_"+str(k)
+        rfilename = "shape"+sys.argv[1].lower()+"_"+str(k)
+        rhfilename = "color" + sys.argv[1].lower() + "_" + str(k)
+        rbfilename = "both" + sys.argv[1].lower() + "_" + str(k)
+        # train with images without any color modification
+        train_model(images=images, nlabels=nlabels, roc_filename=rfilename, bow_filename=bfilename, k_size=k)
+        # train with color quantization
+        train_model(images=qimages, nlabels=nlabels, bow_filename=bhfilename, roc_filename=rhfilename, k_size=k)
+        # train with both
+        train_both_models(nlabels, rbfilename)

@@ -159,6 +159,24 @@ Este vocabulario lo podemos construir haciendo uso de técnicas que se centran e
 
 El descriptor HOG, conocido como \textit{\textbf{Histogram of Oriented Gradientes}} es muy utilizado para la detección de objetos. Este descriptor computa un histograma de valores donde se indican la frecuencia con la que se dan las direcciones de los gradientes en pequeñas divisiones de la imagen.
 
+Hemos probado también a hacer un preprocesamiento de las imágenes convirtiéndolas al espacio de color HSV y simplificando los colores de las imágenes mediante la técnica \textbf{Color Quantization}\cite{cq}, para poder tener colores planos en la imagen. En la \hyperref[color]{Figura \ref*{color}} se ve una comparación entre una imagen sin ningún procesamiento previo y la misma imagen tras aplicar esta técnica. Esta técnica consiste en hacer grupos de colores mediante el algoritmo del \textit{Vecino más cercano} y sustituir todos los colores de un grupo por el más central. Así, se eliminan sombras y se simplifica la imagen para poder obtener mejores resultados.
+
+\begin{figure}[!h]
+  \centering
+  \mbox{
+    \subfigure[Una de las fotos del dataset sin ningún procesamiento] {
+      \includegraphics[width=0.5\textwidth]{../Dataset/image_0001}
+      \label{imagen1}
+    }
+    \subfigure[La misma imagen, convertida al espacio de color HSV y con los colores simplificados] {
+      \includegraphics[width=0.5\textwidth]{../ColorQuantization/image_0001}
+      \label{img1}
+    }
+  }
+  \caption{Comparación de una foto con y sin el tratamiento de color que hemos hecho}
+  \label{color}
+\end{figure}
+
 \section{Enfoque de la implementacion y eficiencia}
 
 La implementación de este trabajo se ha realizado entera en Python, usando la librería OpenCV para la parte de visión por computador, y la librería \textit{scikit-learn}\cite{scikit-learn}.
@@ -172,7 +190,7 @@ Este vocabulario se inicializa como un \texttt{BOWKMeansTrainer} y con la funci�
 
 \subsection{Clusterizar los descriptores obtenidos}
 
-Para obtener los clusters, al haber creado el vocabulario con BOWKMeansTrainer, podemos usar la función cluster para realizar el clustering con K-Medias y así obtener el vocabulario clusterizado, listo para obtener los descriptores de cada imagen.
+Para obtener los clusters, al haber creado el vocabulario con \texttt{BOWKMeansTrainer}, podemos usar la función cluster para realizar el clustering con K-Medias y así obtener el vocabulario clusterizado, listo para obtener los descriptores de cada imagen.
 Esta función de OpenCV, ya implementa el método de clustering utilizando multiprocesamiento en paralelo, para aumentar la eficiencia del algoritmo.
 
 \subsection{Obtener los histogramas de cada imagen}

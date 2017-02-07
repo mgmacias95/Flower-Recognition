@@ -32,6 +32,7 @@ def train_model(images, nlabels, bow_filename="bow"):
     errors_svm = ml.svm(data=data, nlabels=nlabels, training=training, test=test)
     errors_rf = ml.rf(data=data, nlabels=nlabels, training=training, test=test)
 
+    ml.paint_roc_curve(data=data, labels=nlabels, model=errors_svm[0], training=training, test=test)
 
 if __name__ == '__main__':
     # Check the parameters
@@ -56,10 +57,10 @@ if __name__ == '__main__':
     # train with images without any color modification
     train_model(images=images, nlabels=nlabels)
 
-    # train with color quantization
-    if not isfile("ColorQuantization/image_0001.jpg"):
-        qimages = fl.convert_to_HSV_and_quantize(images=images)
-    else:
-        qimages = [cv2.imread('ColorQuantization/image_' + '%0*d' % (4, i) + '.jpg',
-                             flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
-    train_model(images=qimages, nlabels=nlabels, bow_filename="bow_hsv")
+    # # train with color quantization
+    # if not isfile("ColorQuantization/image_0001.jpg"):
+    #     qimages = fl.convert_to_HSV_and_quantize(images=images)
+    # else:
+    #     qimages = [cv2.imread('ColorQuantization/image_' + '%0*d' % (4, i) + '.jpg',
+    #                          flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
+    # train_model(images=qimages, nlabels=nlabels, bow_filename="bow_hsv")

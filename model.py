@@ -1,6 +1,10 @@
 import numpy as np
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
+# paint ROC curve
+from sklearn.metrics import roc_curve, auc
+from sklearn.preprocessing import label_binarize
+import matplotlib.pyplot as plt
 
 """
 function to divide the data into test and training
@@ -63,7 +67,7 @@ def svm(data, nlabels, training, test, verbose=False):
     error_onevsall_test = fit_and_error(model=svm_onevsall, data=data, labels=nlabels, mask=test)
     error_onevsone_test = fit_and_error(model=svm_onevsone, data=data, labels=nlabels, mask=test)
     print("Error en test:\n\tOne VS All: \t", error_onevsall_test, "\n\tOne VS One: \t", error_onevsone_test)
-    return error_onevsall, error_onevsone, error_onevsall_test, error_onevsone_test
+    return svm_onevsall, svm_onevsone, error_onevsall, error_onevsone, error_onevsall_test, error_onevsone_test
 
 """
 train and test a random forest model
@@ -80,4 +84,31 @@ def rf(data, nlabels, training, test):
     error_boots_test = fit_and_error(model=rfb, data=data, labels=nlabels, mask=test)
     error_noboots_test = fit_and_error(model=rfn, data=data, labels=nlabels, mask=test)
     print("Error en test:\n\tWith Bootstrap:\t", error_boots_test, "\n\tWithout Bootstrap:\t", error_noboots_test)
-    return error_boots, error_noboots, error_boots_test, error_noboots_test
+    return rfb, rfn, error_boots, error_noboots, error_boots_test, error_noboots_test
+
+"""
+paint a ROC curve
+"""
+def paint_roc_curve(data, labels, model, training, test, n_classes=17):
+    fpr = dict()
+    tpr = dict()
+    roc_auc = dict()
+    y_score = model.fit(X=data[training], y=labels[training]).decision_function(data[test])
+    y = label_binarize(y=labels, classes=list(range(n_classes)))
+    for i in range(n_classes):
+        fpr[i], tpr[i], _ = roc_curve(y[test][:,i], y_score[:,i])
+        roc_auc[i] = auc(fpr[i], tpr[i])
+    fpr["micro"], tpr["micro"], _ = roc_curve(y[test].ravel(), y_score.ravel())
+    roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
+    plt.figure()
+    lw = 2
+    plt.plot(fpr[2], tpr[2], color='darkorange',
+             lw=lw, label='ROC curve (area = %0.2f)' % roc_auc[2])
+    plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver operating characteristic example')
+    plt.legend(loc="lower right")
+    plt.savefig("prueba.png")

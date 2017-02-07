@@ -82,11 +82,11 @@ def rf(data, nlabels, training, test):
     # fit both models and get its error
     error_boots = fit_and_error(model=rfb, data=data, labels=nlabels, mask=training)
     error_noboots = fit_and_error(model=rfn, data=data, labels=nlabels, mask=training)
-    print("Error en training:\n\tWith Bootstrap:\t",error_boots,"\n\tWithout Bootstrap:\t",error_noboots)
+    # print("Error en training:\n\tWith Bootstrap:\t",error_boots,"\n\tWithout Bootstrap:\t",error_noboots)
     # fit both models and get its test error
     error_boots_test = fit_and_error(model=rfb, data=data, labels=nlabels, mask=test)
     error_noboots_test = fit_and_error(model=rfn, data=data, labels=nlabels, mask=test)
-    print("Error en test:\n\tWith Bootstrap:\t", error_boots_test, "\n\tWithout Bootstrap:\t", error_noboots_test)
+    # print("Error en test:\n\tWith Bootstrap:\t", error_boots_test, "\n\tWithout Bootstrap:\t", error_noboots_test)
     return rfb, rfn, error_boots, error_noboots, error_boots_test, error_noboots_test
 
 """

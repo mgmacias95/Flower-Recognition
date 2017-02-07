@@ -6,12 +6,12 @@ from time import time
 from os.path import isfile
 import numpy as np
 
-def train_model(images, nlabels):
+def train_model(images, nlabels, bow_filename="bow"):
     k_size=20
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the
     # labels and histograms of every class
-    if not isfile("bow.npy"):
+    if not isfile(bow_filename+".npy"):
         x = time()
         BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=k_size)
         y = time()
@@ -19,11 +19,11 @@ def train_model(images, nlabels):
         w = time()
         BOW_descriptors = fl.compute_BOW_response(BOW, images, sys.argv[1].upper(),
                                                   keypoints, descriptors, k_size)
-        np.save(file="bow", arr=BOW_descriptors)
+        np.save(file=bow_filename, arr=BOW_descriptors)
         z = time()
         print("Create BOW: ", w - z, ".s")
     else:
-        BOW_descriptors = np.load("bow.npy")
+        BOW_descriptors = np.load(bow_filename+".npy")
     data = BOW_descriptors
     # data = BOW_descriptors.reshape(BOW_descriptors.shape[0], BOW_descriptors.shape[2])
     # Declare the index for the training and test subset
@@ -57,6 +57,6 @@ if __name__ == '__main__':
     train_model(images=images, nlabels=nlabels)
 
     # train with color quantization
-    # train_model(images=fl.convert_to_HSV_and_quantize(images=images), nlabels=nlabels)
+    train_model(images=fl.convert_to_HSV_and_quantize(images=images), nlabels=nlabels, bow_filename="bow_hsv")
 
 

@@ -34,8 +34,10 @@ def train_model(images, nlabels, bow_filename="bow"):
     ml.cv_rf(data, nlabels, 30)
     ml.cv_svm(data, nlabels, 30)
 
-    ml.paint_roc_curve(data=data, labels=nlabels, model=errors_rf[0], filename="prueba", training=training,
-                       test=test, svm=False)
+    ml.paint_roc_curve(data=data, labels=nlabels, training=training, test=test,
+                       model_list=[errors_svm[1], errors_svm[0], errors_rf[0], errors_rf[1]],
+                       filename="prueba", svm_list=[True, True, False, False],
+                       label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
 
 def train_both_models(nlabels):
     data = np.load("bow.npy")

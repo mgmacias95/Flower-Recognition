@@ -92,7 +92,33 @@ def rf(data, nlabels, training, test):
 """
 paint a ROC curve
 """
-def paint_roc_curve(data, labels, model, training, test, filename, svm=True, n_classes=17,):
+def paint_roc_curve(data, labels, model_list, training, test, filename, svm_list, label_list, n_classes=17):
+    fpr = []
+    tpr = []
+    roc_auc = []
+
+    for model,svm,l in zip(model_list, svm_list,label_list):
+        print(l)
+        f, t, r = calculate_roc_curve(data, labels, model, training, test, svm, n_classes)
+        fpr.append(f)
+        tpr.append(t)
+        roc_auc.append(r)
+
+    plt.figure()
+    lw = 2
+    plt.plot([0,1],[0,1],lw=lw,linestyle='--')
+    for f, t, r, l in zip(fpr, tpr, roc_auc, label_list):
+        plt.plot(f[2], t[2], lw=lw, label=l+'(area = %0.2f)'%r[2])
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Curva ROC de los modelos estudiados')
+    plt.legend(loc="lower right")
+    plt.savefig(filename + ".png")
+
+
+def calculate_roc_curve(data, labels, model, training, test, svm, n_classes):
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -104,24 +130,13 @@ def paint_roc_curve(data, labels, model, training, test, filename, svm=True, n_c
         pipeline.fit(data[training],labels[training])
         y_score = pipeline.predict_proba(data[test])
 
-    y = label_binarize(y=labels, classes=list(range(n_classes)))
+    y = label_binarize(y=labels, classes=list(range(y_score[0].size)))
     for i in range(n_classes):
         fpr[i], tpr[i], _ = roc_curve(y[test][:,i], y_score[:,i])
         roc_auc[i] = auc(fpr[i], tpr[i])
     fpr["micro"], tpr["micro"], _ = roc_curve(y[test].ravel(), y_score.ravel())
     roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
-    plt.figure()
-    lw = 2
-    plt.plot(fpr[2], tpr[2], color='darkorange',
-             lw=lw, label='ROC curve (area = %0.2f)' % roc_auc[2])
-    plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.0, 1.05])
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    plt.title('Receiver operating characteristic example')
-    plt.legend(loc="lower right")
-    plt.savefig(filename+".png")
+    return fpr, tpr, roc_auc
 
 
 """

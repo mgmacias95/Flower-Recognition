@@ -57,6 +57,9 @@ if __name__ == '__main__':
     train_model(images=images, nlabels=nlabels)
 
     # train with color quantization
-    train_model(images=fl.convert_to_HSV_and_quantize(images=images), nlabels=nlabels, bow_filename="bow_hsv")
-
-
+    if not isfile("ColorQuantization/image_0001.jpg"):
+        qimages = fl.convert_to_HSV_and_quantize(images=images)
+    else:
+        qimages = [cv2.imread('ColorQuantization/image_' + '%0*d' % (4, i) + '.jpg',
+                             flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
+    train_model(images=qimages, nlabels=nlabels, bow_filename="bow_hsv")

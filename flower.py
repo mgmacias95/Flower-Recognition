@@ -81,7 +81,6 @@ def create_bag_of_words(images, detector_type, k_size = 10):
     BOW = vocabulary.cluster()
     print("DONE!!")
     BOW = BOW.astype(np.float32)
-    # np.save(file="bow_ini", arr=BOW)
 
     return BOW, keypoints, descriptors
 
@@ -91,10 +90,11 @@ function that converts images to HSV color space and quantizes the color of the 
 The color quantization is based in this tutorial
 http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_ml/py_kmeans/py_kmeans_opencv/py_kmeans_opencv.html
 """
-def convert_to_HSV_and_quantize(images, K=3, show_img=False,
+def convert_to_HSV_and_quantize(images, K=16, show_img=False,
                                 criteria=(cv2.TERM_CRITERIA_EPS +
                                           cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)):
     hsv = []
+    i = 1
     for img in images:
         h = cv2.cvtColor(src=img,code=cv2.COLOR_RGB2HSV).reshape(-1,3)
         h = np.float32(h)
@@ -102,7 +102,10 @@ def convert_to_HSV_and_quantize(images, K=3, show_img=False,
                                         flags=cv2.KMEANS_RANDOM_CENTERS)
         center = np.uint8(center)
         res = center[label.flatten()]
-        hsv.append(res.reshape((img.shape)))
+        qimg = res.reshape((img.shape))
+        hsv.append(qimg)
+        cv2.imwrite("ColorQuantization/image_"+ '%0*d' % (4, i) + '.jpg', qimg)
+        i += 1
 
     # if the flag of showing an image is set, show the 1st one
     if show_img:

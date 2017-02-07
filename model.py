@@ -62,7 +62,7 @@ def svm(data, nlabels, training, test, verbose=False):
     # Fit and get the error of the models
     error_onevsall_test = fit_and_error(model=svm_onevsall, data=data, labels=nlabels, mask=test)
     error_onevsone_test = fit_and_error(model=svm_onevsone, data=data, labels=nlabels, mask=test)
-    print("Error en training:\n\tOne VS All: \t", error_onevsall_test, "\n\tOne VS One: \t", error_onevsone_test)
+    print("Error en test:\n\tOne VS All: \t", error_onevsall_test, "\n\tOne VS One: \t", error_onevsone_test)
     return error_onevsall, error_onevsone, error_onevsall_test, error_onevsone_test
 
 """

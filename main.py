@@ -6,7 +6,7 @@ from time import time
 from os.path import isfile
 import numpy as np
 
-def train_model(images, nlabels, bow_filename="bow"):
+def train_model(images, nlabels, bow_filename="bow", roc_filename="roc"):
     k_size=20
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the
@@ -36,7 +36,7 @@ def train_model(images, nlabels, bow_filename="bow"):
 
     ml.paint_roc_curve(data=data, labels=nlabels, training=training, test=test,
                        model_list=[svm[0], svm[1], rf[0], rf[1]],
-                       filename="prueba", svm_list=[True, True, False, False],
+                       filename=roc_filename, svm_list=[True, True, False, False],
                        label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
 
 def train_both_models(nlabels):
@@ -46,10 +46,13 @@ def train_both_models(nlabels):
 
     training, test = ml.generate_train_test_masks(size=len(images))
 
-    errors_svm = ml.svm(data=both, nlabels=nlabels, training=training, test=test)
-    errors_rf = ml.rf(data=both, nlabels=nlabels, training=training, test=test)
-    ml.cv_rf(both, nlabels, 30)
-    ml.cv_svm(both, nlabels, 30)
+    rf = ml.cv_rf(data, nlabels, 30)
+    svm = ml.cv_svm(data, nlabels, 30)
+
+    ml.paint_roc_curve(data=data, labels=nlabels, training=training, test=test,
+                       model_list=[svm[0], svm[1], rf[0], rf[1]],
+                       filename="both", svm_list=[True, True, False, False],
+                       label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
 
 if __name__ == '__main__':
     # Check the parameters
@@ -72,7 +75,7 @@ if __name__ == '__main__':
     nlabels = ml.generate_num_labels()
 
     # train with images without any color modification
-    train_model(images=images, nlabels=nlabels)
+    train_model(images=images, nlabels=nlabels, roc_filename="shape")
     # train with color quantization
     if not isfile("ColorQuantization/image_0001.jpg"):
         qimages = fl.convert_to_HSV_and_quantize(images=images)
@@ -80,6 +83,6 @@ if __name__ == '__main__':
         qimages = [cv2.imread('ColorQuantization/image_' + '%0*d' % (4, i) + '.jpg',
                              flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
 
-    train_model(images=qimages, nlabels=nlabels, bow_filename="bow_hsv")
+    train_model(images=qimages, nlabels=nlabels, bow_filename="bow_hsv", roc_filename="color")
 
     train_both_models(nlabels)

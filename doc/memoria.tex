@@ -200,7 +200,7 @@ Con todo esto, podremos calcular el histograma para cada imagen y obtener el des
 
 \subsection{Pruebas}
 
-En esta última parte, para probar cómo de efectivos han sido los datos extraídos. Para ello, se han usado dos algoritmos de aprendizaje automático, dos \textit{Support Vector Machine} (SVM), uno siguiendo el método \textit{one-vs-all} y otro, el método \textit{one-vs-one}, y dos \textit{Random Forest}, uno aplicando \textit{bootsting} y otro sin aplicarlo. La ejecución de un modelo u otro no requiere más de 5 minutos, gracias a que cada algoritmo se ejecuta de forma paralela.
+En esta última parte, comprobaremos cómo de efectivos han sido los datos extraídos. Para ello, se han usado dos algoritmos de aprendizaje automático, dos \textit{Support Vector Machine} (SVM), uno siguiendo el método \textit{one-vs-all} y otro, el método \textit{one-vs-one}, y dos \textit{Random Forest}, uno aplicando \textit{bootsting} y otro sin aplicarlo. La ejecución de un modelo u otro no requiere más de 5 minutos, gracias a que cada algoritmo se ejecuta de forma paralela.
 
 Para comprobar la eficacia de los modelos, usaremos validación cruzada al tener un conjunto de datos pequeño ($n=1360$).
 
@@ -208,11 +208,15 @@ También se han realizado pruebas para ver cómo la decisión de tomar un descri
 
 \section{Experimentación}
 
-El conjunto de datos dispone un total de 1360 imágenes de tamaños más o menos similares, generalmente de $600\times500$ aproximadamente, con la centrada en el centro. Las principales dificultades que tienen las imágenes, es que las flores aparecen en las imágenes, no son tomadas desde el mismo ángulo, sino que aparecen imágenes de flores pertenecientes a la misma especie, tomadas desde distintos ángulos, y en ocasiones, con distinta luz, además de las propias diferencias que pueden existir entre flores distintos individuos de la misma especie.
+El conjunto de datos dispone un total de 1360 imágenes de tamaños más o menos similares, generalmente de $600\times500$ aproximadamente, con la flor centrada en la imagen. Las principales dificultades que tienen las imágenes, es que las flores aparecen en las imágenes, no son tomadas desde el mismo ángulo, sino que aparecen imágenes de flores pertenecientes a la misma especie, tomadas desde distintos ángulos, y en ocasiones, con distinta luz, además de las propias diferencias que pueden existir entre flores distintos individuos de la misma especie.
 
+Hemos experimentado con tres tipos de datos distintos: con las imágenes sin ningún procesamiento, con las imágenes procesadas con el algoritmo de \textit{Color Quantization} y con ambas a la vez.
+
+
+\subsection{Imágenes sin procesamiento previo}
 Para empezar, decidimos usar el descriptor de SIFT para extraer los \textit{KeyPoints} de cada imagen y sus respectivos descriptores para poder crear diccionario de palabras.
 
-Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones cambiando el tamaño de $k$ en el intervalo $[20,1000]$. El tiempo de ejecución del clustering, dependiendo del tamaño, pero para $k=1000$ supone un tiempo de 30 minutos aproximadamente.
+Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones cambiando el tamaño de $k$ en el intervalo $[20,1000]$. El tiempo de ejecución del clustering depende del tamaño, pero para $k=1000$ supone un tiempo de 30 minutos aproximadamente.
 
 Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res1]{Tabla \ref*{res1}}:
 
@@ -228,6 +232,10 @@ Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la
   \label{res1}
   \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
 \end{table}
+
+\subsection{Imágenes con procesamiento \textit{Color Quantization}}
+
+\subsection{Usando información de los dos experimentos anteriores}
 
 \bibliography{citations} %archivo citas.bib que contiene las entradas 
 \bibliographystyle{plain} % hay varias formas de citar

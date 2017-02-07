@@ -37,6 +37,15 @@ def train_model(images, nlabels, bow_filename="bow"):
     ml.paint_roc_curve(data=data, labels=nlabels, model=errors_rf[0], filename="prueba", training=training,
                        test=test, svm=False)
 
+def train_both_models(nlabels):
+    data = np.load("bow.npy")
+    qdata = np.load("bow_hsv.npy")
+    both = np.concatenate((data, qdata), axis=1)
+
+    training, test = ml.generate_train_test_masks(size=len(images))
+
+    errors_svm = ml.svm(data=both, nlabels=nlabels, training=training, test=test)
+
 if __name__ == '__main__':
     # Check the parameters
     if len(sys.argv) < 2:
@@ -67,3 +76,5 @@ if __name__ == '__main__':
                              flags=cv2.IMREAD_COLOR) for i in range(1, 1361)]
 
     train_model(images=qimages, nlabels=nlabels, bow_filename="bow_hsv")
+
+    train_both_models(nlabels)

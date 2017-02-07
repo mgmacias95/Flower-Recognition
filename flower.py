@@ -80,8 +80,10 @@ def create_bag_of_words(images, detector_type, k_size = 10):
     # K-Means clustering
     BOW = vocabulary.cluster()
     print("DONE!!")
+    BOW = BOW.astype(np.float32)
+    np.save(file="bow_ini", arr=BOW)
 
-    return BOW.astype(np.float32), keypoints, descriptors
+    return BOW, keypoints, descriptors
 
 
 """
@@ -139,12 +141,15 @@ def compute_BOW_response(BOW, images, detector_type,
     # Set the vocabulary for the BOW extractor,
     # in order to compute the histograms for the images
     BOW_extractor.setVocabulary(BOW)
-    BOW_descriptors = []
+    BOW_descriptors = np.empty([1360, 100])
 
     print("Computing the descriptors for the images")
     # Compute the histograms
+    i = 0
     for img in images:
-        BOW_descriptors.append(BOW_extractor.compute(img, detector.detect(img)))
+        hist = BOW_extractor.compute(img, detector.detect(img))
+        BOW_descriptors[i] = hist[0]
+        i+=1
     print("DONE!!")
 
     return np.array(BOW_descriptors)

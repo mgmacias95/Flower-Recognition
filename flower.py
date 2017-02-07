@@ -81,7 +81,7 @@ def create_bag_of_words(images, detector_type, k_size = 10):
     BOW = vocabulary.cluster()
     print("DONE!!")
     BOW = BOW.astype(np.float32)
-    np.save(file="bow_ini", arr=BOW)
+    # np.save(file="bow_ini", arr=BOW)
 
     return BOW, keypoints, descriptors
 
@@ -112,7 +112,7 @@ def convert_to_HSV_and_quantize(images, K=3, show_img=False,
 
 
 def compute_BOW_response(BOW, images, detector_type,
-                         keypoints, descriptors):
+                         keypoints, descriptors, k_size):
 
     # Create the Brute-Force Matcher
     matcher = cv2.BFMatcher(normType=cv2.NORM_L2)
@@ -141,7 +141,7 @@ def compute_BOW_response(BOW, images, detector_type,
     # Set the vocabulary for the BOW extractor,
     # in order to compute the histograms for the images
     BOW_extractor.setVocabulary(BOW)
-    BOW_descriptors = np.empty([1360, 100])
+    BOW_descriptors = np.empty([1360, k_size])
 
     print("Computing the descriptors for the images")
     # Compute the histograms

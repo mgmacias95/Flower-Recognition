@@ -7,17 +7,18 @@ from os.path import isfile
 import numpy as np
 
 def train_model(images, nlabels):
+    k_size=20
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the
     # labels and histograms of every class
     if not isfile("bow.npy"):
         x = time()
-        BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=100)
+        BOW, keypoints, descriptors = fl.create_bag_of_words(images, sys.argv[1].upper(), k_size=k_size)
         y = time()
         print("Create BOW: ", y - x, ".s")
         w = time()
         BOW_descriptors = fl.compute_BOW_response(BOW, images, sys.argv[1].upper(),
-                                                  keypoints, descriptors)
+                                                  keypoints, descriptors, k_size)
         np.save(file="bow", arr=BOW_descriptors)
         z = time()
         print("Create BOW: ", w - z, ".s")

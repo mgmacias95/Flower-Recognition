@@ -57,6 +57,6 @@ if __name__ == '__main__':
     train_model(images=images, nlabels=nlabels)
 
     # train with color quantization
-    train_model(images=fl.convert_to_HSV_and_quantize(images=images), nlabels=nlabels)
+    # train_model(images=fl.convert_to_HSV_and_quantize(images=images), nlabels=nlabels)
 
 

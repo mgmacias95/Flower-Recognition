@@ -92,7 +92,7 @@ def rf(data, nlabels, training, test):
 """
 paint a ROC curve
 """
-def paint_roc_curve(data, labels, model, training, test, svm=True, n_classes=17,):
+def paint_roc_curve(data, labels, model, training, test, filename, svm=True, n_classes=17,):
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -121,7 +121,7 @@ def paint_roc_curve(data, labels, model, training, test, svm=True, n_classes=17,
     plt.ylabel('True Positive Rate')
     plt.title('Receiver operating characteristic example')
     plt.legend(loc="lower right")
-    plt.savefig("prueba.png")
+    plt.savefig(filename+".png")
 
 
 """

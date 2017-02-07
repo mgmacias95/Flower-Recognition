@@ -154,6 +154,7 @@ def cv_rf(data,nlabels, kfold):
     print("\tWithout boosting")
     print("\t\tBest: %0.2f" % scoresrfn.max())
     print("\t\tAccuracy: %0.2f (+/- %0.2f)" % (scoresrfn.mean(), scoresrfn.std() * 2))
+    return rfb, rfn
 
 
 def cv_svm(data, nlabels, kfold):
@@ -168,3 +169,4 @@ def cv_svm(data, nlabels, kfold):
     print("\tSVM one vs one:")
     print("\t\tBest: %0.2f"%scores_onevsone.max())
     print("\t\tAccuracy: %0.2f (+/- %0.2f)" % (scores_onevsone.mean(), scores_onevsone.std() * 2))
+    return svm_onevsall, svm_onevsone

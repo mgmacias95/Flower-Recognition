@@ -171,8 +171,7 @@ def multiclass_roc_curve(data, labels, model, filename, training, test, svm, lab
                     'coral', 'maroon', 'grey', 'skyblue', 'seagreen'])
     for i, color in zip(range(n_classes), colors):
         ax.plot(fpr[i], tpr[i], color=color, lw=lw,
-                 label='Class {} (area = {1:0.2f})'
-                       ''.format(label_list[i], roc_auc[i]))
+                label='Class {} (area = {})'.format(label_list[i], roc_auc[i]))
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
     ax.legend(loc='center left', bbox_to_anchor=(1,0.5))

@@ -79,7 +79,7 @@ if __name__ == '__main__':
     # create numeric labels for each class
     nlabels = ml.generate_num_labels()
 
-    ks = [200]
+    ks = [20, 200, 500]
 
     for k in ks:
         print("\n\nK = " + str(ks))

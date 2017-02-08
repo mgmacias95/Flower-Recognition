@@ -211,7 +211,7 @@ El conjunto de datos dispone un total de 1360 imágenes de tamaños más o menos
 
 Hemos experimentado con tres tipos de datos distintos: con las imágenes sin ningún procesamiento, con las imágenes procesadas con el algoritmo de \textit{Color Quantization} y con ambas a la vez.
 
-Hemos decidido usar los descriptores de SIFT y de SURF para extraer los \textit{KeyPoints} de cada imagen y sus respectivos descriptores para poder crear diccionario de palabras. Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones con $k=20$, $k=200$ y $k=500$. 
+Hemos decidido usar los descriptores de SIFT y de SURF para extraer los \textit{KeyPoints} de cada imagen y sus respectivos descriptores para poder crear diccionario de palabras. Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones con $k=20$, $k=200$ y $k=500$.
 
 \subsection{Imágenes sin procesamiento previo}
 El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ supone un tiempo de 45 minutos aproximadamente. Las tasas de acierto se encuentran en la \hyperref[resSHAPE]{Tabla \ref*{resSHAPE}}. En general, vemos que cuanto mayor es $k$, mejor es el modelo que obtenemos. 
@@ -223,7 +223,7 @@ El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ su
     \cline{2-8}
     & \textbf{SIFT} & \textbf{SURF} & \textbf{KAZE} & \textbf{SIFT} & \textbf{SURF} & \textbf{KAZE} & \textbf{KAZE} \\
     \hline
-    \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.71$ & $\qquad 0.76$ & $\qquad 0.80$ & $\qquad 0.86$ \\ 
+    \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.71$ & $\qquad 0.76$ & $\qquad 0.80$ & $\qquad 0.86$ \\
     \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.78$ & $\qquad 0.76$ & $\qquad 0.80$ & $\qquad 0.86$ \\
     \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.75$ & $\qquad 0.71$ & $\qquad 0.73$ & $\qquad 0.75$ \\
     \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.63$ & $\qquad 0.69$ & $\qquad 0.75$ & $\qquad 0.67$ & $\qquad 0.71$ & $\qquad 0.71$ \\
@@ -276,7 +276,7 @@ Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbo
 \end{table}
 
 \subsection{Conclusiones de los experimentos}
-El mejor resultado lo hemos obtenido usando $k=500$ con \textit{SVM} y usando sólo información sobre la forma de la flor. El peor, usando $k=20$ con \textit{Boosting} y usando información sobre el color. Además, usar información del color y de la forma no ha supuesto una gran mejora. Esto pensamos que es debido a que no hemos sabido extraer el color correctamente y hemos aplicado un tratamiento erróneo a las imágenes. Por tanto, para futuras mejoras del trabajo realizado deberíamos aumentar el $k$ y tratar de encontrar un descriptor basado en el color, en vez de aplicar un preprocesamiento a las imágenes.
+El mejor resultado lo hemos obtenido usando $k=500$ con \textit{SVM one-vs-one} y usando sólo información sobre la forma de la flor. El peor, usando $k=20$ con \textit{Boosting} y usando información sobre el color. Además, usar información del color y de la forma no ha supuesto una gran mejora. La mejora que se produce introduciendo la información que ofrece el color se produce cuando el tamaño de $k$ que utiliza el \textit{K-Means} para realizar el \textit{clustering} es pequeño, ya que introduce una información útil para que el clasificador aprenda mejor los datos de cada clase, pero con tamaños grandes de $k$, esta información del color no aporta mucho a la solución.
 
 \bibliography{citations} %archivo citas.bib que contiene las entradas 
 \bibliographystyle{plain} % hay varias formas de citar

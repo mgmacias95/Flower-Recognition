@@ -211,13 +211,10 @@ El conjunto de datos dispone un total de 1360 imágenes de tamaños más o menos
 
 Hemos experimentado con tres tipos de datos distintos: con las imágenes sin ningún procesamiento, con las imágenes procesadas con el algoritmo de \textit{Color Quantization} y con ambas a la vez.
 
+Hemos decidido usar los descriptores de SIFT y de SURF para extraer los \textit{KeyPoints} de cada imagen y sus respectivos descriptores para poder crear diccionario de palabras. Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones con $k=20$ y $k=200$. 
 
 \subsection{Imágenes sin procesamiento previo}
-Para empezar, decidimos usar el descriptor de SIFT para extraer los \textit{KeyPoints} de cada imagen y sus respectivos descriptores para poder crear diccionario de palabras.
-
-Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones cambiando el tamaño de $k$ en el intervalo $[20,1000]$. El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ supone un tiempo de 45 minutos aproximadamente.
-
-Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[resSHAPE]{Tabla \ref*{resSHAPE}}.
+El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ supone un tiempo de 45 minutos aproximadamente. Las tasas de acierto se encuentran en la \hyperref[resSHAPE]{Tabla \ref*{resSHAPE}}.
 
 \begin{table}[H]
   \begin{tabular}{l|r|r||r|r}
@@ -236,7 +233,7 @@ Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la
 
 \subsection{Imágenes con procesamiento \textit{Color Quantization}}
 
-Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[resColor]{Tabla \ref*{resColor}}. Como vemos, los resultados en este caso han empeorado con respecto al experimento anterior. Esto se debe a que al aplanar la imagen perdemos muchos detalles tales como el pistilo
+Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColor}}. Como vemos, los resultados en este caso han empeorado con respecto al experimento anterior. Esto se debe a que al aplanar la imagen perdemos muchos detalles tales como el pistilo
 
 \begin{table}[H]
   \begin{tabular}{l|r|r||r|r}
@@ -255,7 +252,7 @@ Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la
 
 \subsection{Usando información de los dos experimentos anteriores}
 
-Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[resAmbos]{Tabla \ref*{resAmbos}}.
+Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbos}}.
 
 \begin{table}[H]
   \begin{tabular}{l|r|r||r|r}

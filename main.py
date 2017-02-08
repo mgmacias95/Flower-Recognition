@@ -83,11 +83,11 @@ if __name__ == '__main__':
 
     for k in ks:
         print("\n\nK = " + str(ks))
-        bfilename = "bow_"+sys.argv[1].lower()+"k"+str(k)
-        bhfilename = "bow_hsv_"+sys.argv[1].lower()+"k"+str(k)
-        rfilename = "shape"+sys.argv[1].lower()+"_"+str(k)
-        rhfilename = "color" + sys.argv[1].lower() + "_" + str(k)
-        rbfilename = "both" + sys.argv[1].lower() + "_" + str(k)
+        bfilename = "numpydata/bow_"+sys.argv[1].lower()+"k"+str(k)
+        bhfilename = "numpydata/bow_hsv_"+sys.argv[1].lower()+"k"+str(k)
+        rfilename = "doc/img/shape"+sys.argv[1].lower()+"_"+str(k)
+        rhfilename = "doc/img/color" + sys.argv[1].lower() + "_" + str(k)
+        rbfilename = "doc/img/both" + sys.argv[1].lower() + "_" + str(k)
         # train with images without any color modification
         train_model(images=images, nlabels=nlabels, roc_filename=rfilename, bow_filename=bfilename, k_size=k)
         # train with color quantization

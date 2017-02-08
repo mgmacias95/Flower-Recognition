@@ -6,7 +6,7 @@ from time import time
 from os.path import isfile
 import numpy as np
 
-def train_model(images, nlabels, bow_filename="bow", roc_filename="roc", k_size=20):
+def train_model(images, nlabels, labels, bow_filename="bow", roc_filename="roc", k_size=20):
     # Create geometric vocabulary of the images and then, we do K-Means
     # clustering to create the Bag Of Words and get the
     # labels and histograms of every class
@@ -39,7 +39,7 @@ def train_model(images, nlabels, bow_filename="bow", roc_filename="roc", k_size=
     #                    label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
 
     ml.multiclass_roc_curve(data=data, labels=nlabels, training=training, test=test,
-                            model = svm[0], filename=roc_filename, svm=True)
+                            model = svm[0], filename=roc_filename, label_list=labels, svm=True)
 
 
 def train_both_models(nlabels, roc_filename, geom_name, hsv_name):
@@ -92,8 +92,8 @@ if __name__ == '__main__':
         rhfilename = "doc/img/color" + sys.argv[1].lower() + "_" + str(k)
         rbfilename = "doc/img/both" + sys.argv[1].lower() + "_" + str(k)
         # train with images without any color modification
-        train_model(images=images, nlabels=nlabels, roc_filename=rfilename, bow_filename=bfilename, k_size=k)
+        train_model(images=images, nlabels=nlabels, roc_filename=rfilename, bow_filename=bfilename, labels=labels, k_size=k)
         # train with color quantization
-        train_model(images=qimages, nlabels=nlabels, bow_filename=bhfilename, roc_filename=rhfilename, k_size=k)
+        train_model(images=qimages, nlabels=nlabels, bow_filename=bhfilename, roc_filename=rhfilename, labels=labels, k_size=k)
         # train with both
         train_both_models(nlabels, rbfilename, bfilename, bhfilename)

@@ -141,7 +141,7 @@ def calculate_roc_curve(data, labels, model, training, test, svm, n_classes):
     return fpr, tpr, roc_auc
 
 
-def multiclass_roc_curve(data, labels, model, filename, training, test, svm, n_classes=17):
+def multiclass_roc_curve(data, labels, model, filename, training, test, svm, label_list, n_classes=17):
     fpr, tpr, roc_auc = calculate_roc_curve(data, labels, model, training, test, svm, n_classes)
     all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))
     mean_tpr = np.zeros_like(all_fpr)
@@ -171,8 +171,8 @@ def multiclass_roc_curve(data, labels, model, filename, training, test, svm, n_c
                     'coral', 'maroon', 'grey', 'skyblue', 'seagreen'])
     for i, color in zip(range(n_classes), colors):
         ax.plot(fpr[i], tpr[i], color=color, lw=lw,
-                 label='Class {0} (area = {1:0.2f})'
-                       ''.format(i, roc_auc[i]))
+                 label='Class {} (area = {1:0.2f})'
+                       ''.format(label_list[i], roc_auc[i]))
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
     ax.legend(loc='center left', bbox_to_anchor=(1,0.5))
@@ -181,7 +181,7 @@ def multiclass_roc_curve(data, labels, model, filename, training, test, svm, n_c
     plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Some extension of Receiver operating characteristic to multi-class')
+    plt.title('Curva ROC por clases para KAZE con k=500')
     # plt.legend(loc="lower right")
     plt.savefig(filename + ".png")
 

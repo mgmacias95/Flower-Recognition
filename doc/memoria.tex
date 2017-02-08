@@ -215,70 +215,61 @@ Hemos experimentado con tres tipos de datos distintos: con las imágenes sin nin
 \subsection{Imágenes sin procesamiento previo}
 Para empezar, decidimos usar el descriptor de SIFT para extraer los \textit{KeyPoints} de cada imagen y sus respectivos descriptores para poder crear diccionario de palabras.
 
-Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones cambiando el tamaño de $k$ en el intervalo $[20,1000]$. El tiempo de ejecución del clustering depende del tamaño, pero para $k=1000$ supone un tiempo de 30 minutos aproximadamente.
+Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones cambiando el tamaño de $k$ en el intervalo $[20,1000]$. El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ supone un tiempo de 45 minutos aproximadamente.
 
-Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res20SIFT]{Tabla \ref*{res20SIFT}}.
-
-\begin{table}[H]
-  \begin{tabular}{l|r|r}
-    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c}{\textbf{Tasa de acierto}} \\
-    \cline{2-3}
-    & \textbf{SIFT} & \textbf{SURF} \\
-    \hline
-    \textit{SVM one-vs-all} & $\qquad$ 0.63 & $\qquad$ 0.45 \\ 
-    \textit{SVM one-vs-one} & $\qquad$ 0.63 & $\qquad$ 0.45 \\
-    \textit{RF con bootsting} & $\qquad$ 0.65 & $\qquad$ 0.45 \\
-    \textit{RF sin bootsting} & $\qquad$ 0.59 & $\qquad$ 0.63 \\
-  \end{tabular}
-  \label{res20SIFT}
-  \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen. $k=20$ con SIFT.}
-\end{table}
+Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[resSHAPE]{Tabla \ref*{resSHAPE}}.
 
 \begin{table}[H]
-  \begin{tabular}{l|r}
-    \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
+  \begin{tabular}{l|r|r||r|r}
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=200$)} \\
+    \cline{2-5}
+    & \textbf{SIFT} & \textbf{SURF} & \textbf{SIFT} & \textbf{SURF} \\
     \hline
-    \textit{SVM one-vs-all} & $\qquad$ 0.45 \\
-    \textit{SVM one-vs-one} & $\qquad$ 0.45 \\
-    \textit{RF con bootsting} & $\qquad$ 0.45 \\
-    \textit{RF sin bootsting} & $\qquad$ 0.63 \\
+    \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.71$ & $\qquad 0.76$ \\ 
+    \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.78$ & $\qquad 0.76$ \\
+    \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.45$ & $\qquad 0.75$ & $\qquad 0.71$ \\
+    \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.63$ & $\qquad 0.75$ & $\qquad 0.67$ \\
   \end{tabular}
-  \label{res20SURF}
-  \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen. $k=20$ con SURF.}
+  \label{resSHAPE}
+  \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
 \end{table}
 
 \subsection{Imágenes con procesamiento \textit{Color Quantization}}
 
-Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res20SURFColor]{Tabla \ref*{res20SURFColor}}. Como vemos, los resultados en este caso han empeorado con respecto al experimento anterior. Esto se debe a que al aplanar la imagen perdemos muchos detalles tales como el pistilo
+Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[resColor]{Tabla \ref*{resColor}}. Como vemos, los resultados en este caso han empeorado con respecto al experimento anterior. Esto se debe a que al aplanar la imagen perdemos muchos detalles tales como el pistilo
 
 \begin{table}[H]
-  \begin{tabular}{l|r}
-    \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
+  \begin{tabular}{l|r|r||r|r}
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=200$)} \\
+    \cline{2-5}
+    & \textbf{SIFT} & \textbf{SURF} & \textbf{SIFT} & \textbf{SURF} \\
     \hline
-    \textit{SVM one-vs-all} & $\qquad$ 0.47 \\
-    \textit{SVM one-vs-one} & $\qquad$ 0.47 \\
-    \textit{RF con bootsting} & $\qquad$ 0.47 \\
-    \textit{RF sin bootsting} & $\qquad$ 0.49 \\
+    \textit{SVM one-vs-all} & $\qquad 0.47$ & $\qquad 0.47$ & $\qquad 0.61$ & $\qquad 0.65$ \\ 
+    \textit{SVM one-vs-one} & $\qquad 0.47$ & $\qquad 0.47$ & $\qquad 0.61$ & $\qquad 0.65$ \\
+    \textit{RF con bootsting} & $\qquad 0.43$ & $\qquad 0.47$ & $\qquad 0.49$ & $\qquad 0.55$ \\
+    \textit{RF sin bootsting} & $\qquad 0.45$ & $\qquad 0.49$ & $\qquad 0.49$ & $\qquad 0.57$ \\
   \end{tabular}
-  \label{res20SURFColor}
-  \caption{Tasa de aciertos de los algoritmos usando imágenes con \textit{Color Quantization}. $k=20$ con SURF.}
+  \label{resColor}
+  \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
 \end{table}
 
 \subsection{Usando información de los dos experimentos anteriores}
 
-Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res20SURFAmbos]{Tabla \ref*{res20SURFAmbos}}.
+Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[resAmbos]{Tabla \ref*{resAmbos}}.
 
 \begin{table}[H]
-  \begin{tabular}{l|r}
-    \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
+  \begin{tabular}{l|r|r||r|r}
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=200$)} \\
+    \cline{2-5}
+    & \textbf{SIFT} & \textbf{SURF} & \textbf{SIFT} & \textbf{SURF} \\
     \hline
-    \textit{SVM one-vs-all} & $\qquad$ 0.63 \\
-    \textit{SVM one-vs-one} & $\qquad$ 0.63 \\
-    \textit{RF con bootsting} & $\qquad$ 0.63 \\
-    \textit{RF sin bootsting} & $\qquad$ 0.65 \\
+    \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.63$ & $\qquad 0.75$ & $\qquad 0.76$ \\ 
+    \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.63$ & $\qquad 0.75$ & $\qquad 0.76$ \\
+    \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.63$ & $\qquad 0.67$ & $\qquad 0.69$ \\
+    \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.65$ & $\qquad 0.73$ & $\qquad 0.67$ \\
   \end{tabular}
-  \label{res20SURFAmbos}
-  \caption{Tasa de aciertos de los algoritmos usando la información de los dos experimentos anteriores. $k=20$ con SURF}
+  \label{resAmbos}
+  \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
 \end{table}
 
 \bibliography{citations} %archivo citas.bib que contiene las entradas 

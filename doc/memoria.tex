@@ -275,7 +275,7 @@ Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbo
   \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
 \end{table}
 
-\subsection{Conclusión de los experimentos y valoración de resultados obtenidos}
+\section{Conclusión de los experimentos y valoración de resultados obtenidos}
 El mejor resultado lo hemos obtenido usando $k=500$ con \textit{SVM} y usando sólo información sobre la forma de la flor. El peor, usando $k=20$ con \textit{Boosting} y usando información sobre el color. Además, usar información del color y de la forma no ha supuesto una gran mejora. La mejora que se produce introduciendo la información que ofrece el color se produce cuando el tamaño de $k$ que utiliza el \textit{K-Means} para realizar el \textit{clustering} es pequeño, ya que introduce una información útil para que el clasificador aprenda mejor los datos de cada clase, pero con tamaños grandes de $k$, esta información del color no aporta mucho a la solución.
 
 En cuanto a la aproximación para extraer información sobre el color de las flores, creemos que puede ser mejorable y que por esa razón no ha dado mucha información. Usar el espacio de color HSV sí que ha sido algo correcto, pues hace que los colores de las imágenes sean independientes de las condiciones de luz con las que se tomaron pero tendríamos que haber usado un descriptor distinto en vez de haber tratado de simplificar los colores.
@@ -288,6 +288,8 @@ En la \hyperref[roc]{Figura \ref*{roc}} vemos una curva ROC de las 17 clases, he
   \caption{Curva ROC de las 17 clases hecha con el modelo \textit{SVM} con KAZE y $k=500$}
   \label{roc}
 \end{figure}
+
+También podemos ver en secciones anteriores, cómo la selección del descriptor influye mucho a la hora de realizar la detección de objetos, ya que el número de puntos obtenidos y la calidad de estos, repercutirá directamente en el trabajo que realice el clasificador. Es decir, la extracción de características mediante la detección de \textit{KeyPoints} y la generación de la bolsa de palabras para hacer los descriptores de las imágenes, es un proceso más delicado e importante que la parte del aprendizaje, ya que los algoritmos de aprendizaje funcionarán mejor o peor en función de la calidad de los datos que reciban.
 
 \bibliography{citations} %archivo citas.bib que contiene las entradas 
 \bibliographystyle{plain} % hay varias formas de citar

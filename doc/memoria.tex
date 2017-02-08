@@ -275,8 +275,19 @@ Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbo
   \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
 \end{table}
 
-\subsection{Conclusiones de los experimentos}
+\subsection{Conclusión de los experimentos y valoración de resultados obtenidos}
 El mejor resultado lo hemos obtenido usando $k=500$ con \textit{SVM} y usando sólo información sobre la forma de la flor. El peor, usando $k=20$ con \textit{Boosting} y usando información sobre el color. Además, usar información del color y de la forma no ha supuesto una gran mejora. La mejora que se produce introduciendo la información que ofrece el color se produce cuando el tamaño de $k$ que utiliza el \textit{K-Means} para realizar el \textit{clustering} es pequeño, ya que introduce una información útil para que el clasificador aprenda mejor los datos de cada clase, pero con tamaños grandes de $k$, esta información del color no aporta mucho a la solución.
+
+En cuanto a la aproximación para extraer información sobre el color de las flores, creemos que puede ser mejorable y que por esa razón no ha dado mucha información. Usar el espacio de color HSV sí que ha sido algo correcto, pues hace que los colores de las imágenes sean independientes de las condiciones de luz con las que se tomaron pero tendríamos que haber usado un descriptor distinto en vez de haber tratado de simplificar los colores.
+
+En la \hyperref[roc]{Figura \ref*{roc}} vemos una curva ROC de las 17 clases, hecha con el mejor modelo obtenido: el SVM con KAZE y $k=500$. Como vemos, hay varias clases en las que hemos obtenido un 100\% de acierto y, la clase que menos acierto ha tenido ha sido la \textit{Tulip} con un 75\%. En general, vemos que la tasa de acierto ha sido bastante alta.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{img/shapekaze_500}
+  \caption{Curva ROC de las 17 clases hecha con el modelo \textit{SVM} con KAZE y $k=500$}
+  \label{roc}
+\end{figure}
 
 \bibliography{citations} %archivo citas.bib que contiene las entradas 
 \bibliographystyle{plain} % hay varias formas de citar

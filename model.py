@@ -141,7 +141,7 @@ def calculate_roc_curve(data, labels, model, training, test, svm, n_classes):
     return fpr, tpr, roc_auc
 
 
-def multiclass_roc_curve(data, labels, model, training, test, svm, n_classes=17):
+def multiclass_roc_curve(data, labels, model, filename, training, test, svm, n_classes=17):
     fpr, tpr, roc_auc = calculate_roc_curve(data, labels, model, training, test, svm, n_classes)
     all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))
     mean_tpr = np.zeros_like(all_fpr)
@@ -180,7 +180,7 @@ def multiclass_roc_curve(data, labels, model, training, test, svm, n_classes=17)
     plt.ylabel('True Positive Rate')
     plt.title('Some extension of Receiver operating characteristic to multi-class')
     plt.legend(loc="lower right")
-    plt.save("prueba.png")
+    plt.savefig(filename+".png")
 
 """
 Cross validation functions to test SVM and RF

@@ -214,7 +214,7 @@ Hemos experimentado con tres tipos de datos distintos: con las imágenes sin nin
 Hemos decidido usar los descriptores de SIFT y de SURF para extraer los \textit{KeyPoints} de cada imagen y sus respectivos descriptores para poder crear diccionario de palabras. Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el clustering, realizando distintas ejecuciones con $k=20$ y $k=200$. 
 
 \subsection{Imágenes sin procesamiento previo}
-El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ supone un tiempo de 45 minutos aproximadamente. Las tasas de acierto se encuentran en la \hyperref[resSHAPE]{Tabla \ref*{resSHAPE}}.
+El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ supone un tiempo de 45 minutos aproximadamente. Las tasas de acierto se encuentran en la \hyperref[resSHAPE]{Tabla \ref*{resSHAPE}}. En general, vemos que cuanto mayor es $k$, mejor es el modelo que obtenemos. 
 
 \begin{table}[H]
   \begin{tabular}{l|r|r||r|r}
@@ -233,7 +233,7 @@ El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ su
 
 \subsection{Imágenes con procesamiento \textit{Color Quantization}}
 
-Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColor}}. Como vemos, los resultados en este caso han empeorado con respecto al experimento anterior. Esto se debe a que al aplanar la imagen perdemos muchos detalles tales como el pistilo
+Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColor}}. Como vemos, los resultados en este caso han empeorado con respecto al experimento anterior. Esto se debe a que al aplanar la imagen perdemos muchos detalles tales como el pistilo de la flor y la textura de los pétalos.  Por tanto, los resultados obtenidos usando únicamente la información extraída de la imagen simplificada no ha servido de mucho.
 
 \begin{table}[H]
   \begin{tabular}{l|r|r||r|r}
@@ -252,7 +252,7 @@ Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColo
 
 \subsection{Usando información de los dos experimentos anteriores}
 
-Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbos}}.
+Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbos}}. Con $k=20$ obtenemos mejores resultados en SURF, pero cuando $k$ crece incluir información sobre el color no influye demasiado sobre la imagen.
 
 \begin{table}[H]
   \begin{tabular}{l|r|r||r|r}
@@ -268,6 +268,9 @@ Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbo
   \label{resAmbos}
   \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
 \end{table}
+
+\subsection{Conclusiones de los experimentos}
+El mejor resultado lo hemos obtenido usando $k=200$ con \textit{SVM one-vs-one} y usando sólo información sobre la forma de la flor. El peor, usando $k=20$ con \textit{Boosting} y usando información sobre el color. Además, usar información del color y de la forma no ha supuesto una gran mejora. Esto pensamos que es debido a que no hemos sabido extraer el color correctamente y hemos aplicado un tratamiento erróneo a las imágenes. Por tanto, para futuras mejoras del trabajo realizado deberíamos aumentar el $k$ y tratar de encontrar un descriptor basado en el color, en vez de aplicar un preprocesamiento a las imágenes.
 
 \bibliography{citations} %archivo citas.bib que contiene las entradas 
 \bibliographystyle{plain} % hay varias formas de citar

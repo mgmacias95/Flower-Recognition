@@ -33,10 +33,13 @@ def train_model(images, nlabels, bow_filename="bow", roc_filename="roc", k_size=
     rf = ml.cv_rf(data, nlabels, 30)
     svm = ml.cv_svm(data, nlabels, 30)
 
-    ml.paint_roc_curve(data=data, labels=nlabels, training=training, test=test,
-                       model_list=[svm[0], svm[1], rf[0], rf[1]],
-                       filename=roc_filename, svm_list=[True, True, False, False],
-                       label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
+    # ml.paint_roc_curve(data=data, labels=nlabels, training=training, test=test,
+    #                    model_list=[svm[0], svm[1], rf[0], rf[1]],
+    #                    filename=roc_filename, svm_list=[True, True, False, False],
+    #                    label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
+
+    ml.multiclass_roc_curve(data=data, labels=nlabels, training=training, test=test,
+                            model = svm[0], filename=roc_filename, svm=True)
 
 
 def train_both_models(nlabels, roc_filename, geom_name, hsv_name):
@@ -79,7 +82,7 @@ if __name__ == '__main__':
     # create numeric labels for each class
     nlabels = ml.generate_num_labels()
 
-    ks = [20, 200, 500]
+    ks = [500]
 
     for k in ks:
         print("\n\nK = " + str(ks))

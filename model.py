@@ -8,6 +8,8 @@ from sklearn.preprocessing import label_binarize
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
+from scipy import interp
+from itertools import cycle
 
 """
 function to divide the data into test and training
@@ -138,6 +140,47 @@ def calculate_roc_curve(data, labels, model, training, test, svm, n_classes):
     roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
     return fpr, tpr, roc_auc
 
+
+def multiclass_roc_curve(data, labels, model, training, test, svm, n_classes=17):
+    fpr, tpr, roc_auc = calculate_roc_curve(data, labels, model, training, test, svm, n_classes)
+    all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))
+    mean_tpr = np.zeros_like(all_fpr)
+    for i in range(n_classes):
+        mean_tpr += interp(all_fpr, fpr[i], tpr[i])
+    mean_tpr /= n_classes
+    fpr["macro"] = all_fpr
+    tpr["macro"] = mean_tpr
+    roc_auc["macro"] = auc(fpr["macro"], tpr["macro"])
+
+    lw=2
+    # Plot all ROC curves
+    plt.figure()
+    plt.plot(fpr["micro"], tpr["micro"],
+             label='micro-average ROC curve (area = {0:0.2f})'
+                   ''.format(roc_auc["micro"]),
+             color='deeppink', linestyle=':', linewidth=4)
+
+    plt.plot(fpr["macro"], tpr["macro"],
+             label='macro-average ROC curve (area = {0:0.2f})'
+                   ''.format(roc_auc["macro"]),
+             color='navy', linestyle=':', linewidth=4)
+
+    colors = cycle(['aqua', 'darkorange', 'cornflowerblue', 'mediumseagreen', 'orchid', 'lightpink',
+                    'darkslateblue', 'purple', 'darkblue', 'skyblue', 'red', 'firebrick',
+                    'coral', 'maroon', 'grey', 'skyblue', 'seagreen'])
+    for i, color in zip(range(n_classes), colors):
+        plt.plot(fpr[i], tpr[i], color=color, lw=lw,
+                 label='ROC curve of class {0} (area = {1:0.2f})'
+                       ''.format(i, roc_auc[i]))
+
+    plt.plot([0, 1], [0, 1], 'k--', lw=lw)
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Some extension of Receiver operating characteristic to multi-class')
+    plt.legend(loc="lower right")
+    plt.save("prueba.png")
 
 """
 Cross validation functions to test SVM and RF

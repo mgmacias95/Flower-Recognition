@@ -155,12 +155,13 @@ def multiclass_roc_curve(data, labels, model, filename, training, test, svm, n_c
     lw=2
     # Plot all ROC curves
     plt.figure()
-    plt.plot(fpr["micro"], tpr["micro"],
+    ax = plt.subplot(111)
+    ax.plot(fpr["micro"], tpr["micro"],
              label='micro-average ROC curve (area = {0:0.2f})'
                    ''.format(roc_auc["micro"]),
              color='deeppink', linestyle=':', linewidth=4)
 
-    plt.plot(fpr["macro"], tpr["macro"],
+    ax.plot(fpr["macro"], tpr["macro"],
              label='macro-average ROC curve (area = {0:0.2f})'
                    ''.format(roc_auc["macro"]),
              color='navy', linestyle=':', linewidth=4)
@@ -169,18 +170,20 @@ def multiclass_roc_curve(data, labels, model, filename, training, test, svm, n_c
                     'darkslateblue', 'purple', 'darkblue', 'skyblue', 'red', 'firebrick',
                     'coral', 'maroon', 'grey', 'skyblue', 'seagreen'])
     for i, color in zip(range(n_classes), colors):
-        plt.plot(fpr[i], tpr[i], color=color, lw=lw,
+        ax.plot(fpr[i], tpr[i], color=color, lw=lw,
                  label='ROC curve of class {0} (area = {1:0.2f})'
                        ''.format(i, roc_auc[i]))
-
-    plt.plot([0, 1], [0, 1], 'k--', lw=lw)
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.0, 1.05])
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    plt.title('Some extension of Receiver operating characteristic to multi-class')
-    plt.legend(loc="lower right")
-    plt.savefig(filename+".png")
+    box = ax.get_position()
+    ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+    ax.legend(loc='center left', bbox_to_anchor=(1,0.5))
+    ax.plot([0, 1], [0, 1], 'k--', lw=lw)
+    ax.xlim([0.0, 1.0])
+    ax.ylim([0.0, 1.05])
+    ax.xlabel('False Positive Rate')
+    ax.ylabel('True Positive Rate')
+    ax.title('Some extension of Receiver operating characteristic to multi-class')
+    # plt.legend(loc="lower right")
+    plt.savefig(filename + ".png")
 
 """
 Cross validation functions to test SVM and RF

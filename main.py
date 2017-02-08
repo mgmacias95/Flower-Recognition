@@ -81,8 +81,8 @@ if __name__ == '__main__':
     ks = [20, 200, 500, 1000]
 
     for k in ks:
-        bfilename = "bow_"+sys.argv[1].lower()+"_"+str(k)
-        bhfilename = "bow_hsv_"+sys.argv[1].lower()+"_"+str(k)
+        bfilename = "bow_"+sys.argv[1].lower()+"k"+str(k)
+        bhfilename = "bow_hsv_"+sys.argv[1].lower()+"k"+str(k)
         rfilename = "shape"+sys.argv[1].lower()+"_"+str(k)
         rhfilename = "color" + sys.argv[1].lower() + "_" + str(k)
         rbfilename = "both" + sys.argv[1].lower() + "_" + str(k)

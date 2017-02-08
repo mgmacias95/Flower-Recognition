@@ -154,7 +154,7 @@ def multiclass_roc_curve(data, labels, model, filename, training, test, svm, n_c
 
     lw=2
     # Plot all ROC curves
-    plt.figure()
+    plt.figure(figsize=(15, 10))
     ax = plt.subplot(111)
     ax.plot(fpr["micro"], tpr["micro"],
              label='micro-average ROC curve (area = {0:0.2f})'

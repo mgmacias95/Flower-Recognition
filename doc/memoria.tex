@@ -217,15 +217,17 @@ Hemos decidido usar los descriptores de SIFT y de SURF para extraer los \textit{
 El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ supone un tiempo de 45 minutos aproximadamente. Las tasas de acierto se encuentran en la \hyperref[resSHAPE]{Tabla \ref*{resSHAPE}}. En general, vemos que cuanto mayor es $k$, mejor es el modelo que obtenemos. 
 
 \begin{table}[H]
-  \begin{tabular}{l|r|r||r|r}
-    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=200$)} \\
-    \cline{2-5}
-    & \textbf{SIFT} & \textbf{SURF} & \textbf{SIFT} & \textbf{SURF} \\
+  \begin{tabular}{|l|r|r|r||r|r|r|}
+  \hline
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{3}{c||}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{3}{c|}{\textbf{Tasa de acierto} ($k=200$)} \\
+    \cline{2-7}
+    & \textbf{SIFT} & \textbf{SURF} & \textbf{KAZE} & \textbf{SIFT} & \textbf{SURF} & \textbf{KAZE} \\
     \hline
-    \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.71$ & $\qquad 0.76$ \\ 
-    \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.78$ & $\qquad 0.76$ \\
-    \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.45$ & $\qquad 0.75$ & $\qquad 0.71$ \\
-    \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.63$ & $\qquad 0.75$ & $\qquad 0.67$ \\
+    \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.71$ & $\qquad 0.76$ & \\ 
+    \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.78$ & $\qquad 0.76$ & \\
+    \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.75$ & $\qquad 0.71$ & \\
+    \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.63$ & $\qquad 0.69$ & $\qquad 0.75$ & $\qquad 0.67$ & \\
+    \hline
   \end{tabular}
   \label{resSHAPE}
   \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
@@ -236,8 +238,9 @@ El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ su
 Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColor}}. Como vemos, los resultados en este caso han empeorado con respecto al experimento anterior. Esto se debe a que al aplanar la imagen perdemos muchos detalles tales como el pistilo de la flor y la textura de los pétalos.  Por tanto, los resultados obtenidos usando únicamente la información extraída de la imagen simplificada no ha servido de mucho.
 
 \begin{table}[H]
-  \begin{tabular}{l|r|r||r|r}
-    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=200$)} \\
+  \begin{tabular}{|l|r|r||r|r|}
+  \hline
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c||}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c|}{\textbf{Tasa de acierto} ($k=200$)} \\
     \cline{2-5}
     & \textbf{SIFT} & \textbf{SURF} & \textbf{SIFT} & \textbf{SURF} \\
     \hline
@@ -245,6 +248,7 @@ Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColo
     \textit{SVM one-vs-one} & $\qquad 0.47$ & $\qquad 0.47$ & $\qquad 0.61$ & $\qquad 0.65$ \\
     \textit{RF con bootsting} & $\qquad 0.43$ & $\qquad 0.47$ & $\qquad 0.49$ & $\qquad 0.55$ \\
     \textit{RF sin bootsting} & $\qquad 0.45$ & $\qquad 0.49$ & $\qquad 0.49$ & $\qquad 0.57$ \\
+    \hline
   \end{tabular}
   \label{resColor}
   \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}
@@ -255,8 +259,9 @@ Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColo
 Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbos}}. Con $k=20$ obtenemos mejores resultados en SURF, pero cuando $k$ crece incluir información sobre el color no influye demasiado sobre la imagen.
 
 \begin{table}[H]
-  \begin{tabular}{l|r|r||r|r}
-    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c}{\textbf{Tasa de acierto} ($k=200$)} \\
+  \begin{tabular}{|l|r|r||r|r|}
+  \hline
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c||}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c|}{\textbf{Tasa de acierto} ($k=200$)} \\
     \cline{2-5}
     & \textbf{SIFT} & \textbf{SURF} & \textbf{SIFT} & \textbf{SURF} \\
     \hline
@@ -264,6 +269,7 @@ Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbo
     \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.63$ & $\qquad 0.75$ & $\qquad 0.76$ \\
     \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.63$ & $\qquad 0.67$ & $\qquad 0.69$ \\
     \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.65$ & $\qquad 0.73$ & $\qquad 0.67$ \\
+    \hline
   \end{tabular}
   \label{resAmbos}
   \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen.}

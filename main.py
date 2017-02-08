@@ -38,9 +38,10 @@ def train_model(images, nlabels, bow_filename="bow", roc_filename="roc", k_size=
                        filename=roc_filename, svm_list=[True, True, False, False],
                        label_list=["SVM One VS All", "SVM One VS One", "Boosting", "RF"])
 
-def train_both_models(nlabels, roc_filename):
-    data = np.load("bow.npy")
-    qdata = np.load("bow_hsv.npy")
+
+def train_both_models(nlabels, roc_filename, geom_name, hsv_name):
+    data = np.load(geom_name+".npy")
+    qdata = np.load(hsv_name+".npy")
     both = np.concatenate((data, qdata), axis=1)
 
     training, test = ml.generate_train_test_masks(size=len(images))
@@ -78,9 +79,10 @@ if __name__ == '__main__':
     # create numeric labels for each class
     nlabels = ml.generate_num_labels()
 
-    ks = [20, 200, 500, 1000]
+    ks = [200]
 
     for k in ks:
+        print("\n\nK = " + str(ks))
         bfilename = "bow_"+sys.argv[1].lower()+"k"+str(k)
         bhfilename = "bow_hsv_"+sys.argv[1].lower()+"k"+str(k)
         rfilename = "shape"+sys.argv[1].lower()+"_"+str(k)
@@ -91,4 +93,4 @@ if __name__ == '__main__':
         # train with color quantization
         train_model(images=qimages, nlabels=nlabels, bow_filename=bhfilename, roc_filename=rhfilename, k_size=k)
         # train with both
-        train_both_models(nlabels, rbfilename)
+        train_both_models(nlabels, rbfilename, bfilename, bhfilename)

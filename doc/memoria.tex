@@ -10,7 +10,6 @@
 \usepackage{fancybox}
 \usepackage{pseudocode}
 
-
 % ---- Idioma --------
 
 \usepackage[spanish, es-tabla]{babel} % Selecciona el español para palabras introducidas automáticamente, p.ej. "septiembre" en la fecha y especifica que se use la palabra Tabla en vez de Cuadro
@@ -25,7 +24,7 @@
 % \makesavenoteenv{tabular}
 % \makesavenoteenv{table}
 % Para hacer tablas comlejas
-%\usepackage{multirow}
+\usepackage{multirow}
 %\usepackage{threeparttable}
 \usepackage{sectsty} % Allows customizing section commands
 \allsectionsfont{\centering \scshape} % Make all sections centered, the default font and small caps
@@ -221,13 +220,15 @@ Este diccionario se ha realizado usando el algoritmo \textit{K-Means} para el cl
 Para tamaño $k=20$ en clustering, tenemos las siguientes tasas de acierto en la \hyperref[res20SIFT]{Tabla \ref*{res20SIFT}}.
 
 \begin{table}[H]
-  \begin{tabular}{l|r}
-    \textbf{Algoritmo} & \textbf{Tasa de acierto} \\
+  \begin{tabular}{l|r|r}
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c}{\textbf{Tasa de acierto}} \\
+    \cline{2-3}
+    & \textbf{SIFT} & \textbf{SURF} \\
     \hline
-    \textit{SVM one-vs-all} & $\qquad$ 0.63 \\
-    \textit{SVM one-vs-one} & $\qquad$ 0.63 \\
-    \textit{RF con bootsting} & $\qquad$ 0.65 \\
-    \textit{RF sin bootsting} & $\qquad$ 0.59 \\
+    \textit{SVM one-vs-all} & $\qquad$ 0.63 & $\qquad$ 0.45 \\ 
+    \textit{SVM one-vs-one} & $\qquad$ 0.63 & $\qquad$ 0.45 \\
+    \textit{RF con bootsting} & $\qquad$ 0.65 & $\qquad$ 0.45 \\
+    \textit{RF sin bootsting} & $\qquad$ 0.59 & $\qquad$ 0.63 \\
   \end{tabular}
   \label{res20SIFT}
   \caption{Tasa de aciertos de los algoritmos usando sólo la geometría de la imagen. $k=20$ con SIFT.}

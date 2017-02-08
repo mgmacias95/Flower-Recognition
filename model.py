@@ -171,17 +171,17 @@ def multiclass_roc_curve(data, labels, model, filename, training, test, svm, n_c
                     'coral', 'maroon', 'grey', 'skyblue', 'seagreen'])
     for i, color in zip(range(n_classes), colors):
         ax.plot(fpr[i], tpr[i], color=color, lw=lw,
-                 label='ROC curve of class {0} (area = {1:0.2f})'
+                 label='Class {0} (area = {1:0.2f})'
                        ''.format(i, roc_auc[i]))
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
     ax.legend(loc='center left', bbox_to_anchor=(1,0.5))
     ax.plot([0, 1], [0, 1], 'k--', lw=lw)
-    ax.xlim([0.0, 1.0])
-    ax.ylim([0.0, 1.05])
-    ax.xlabel('False Positive Rate')
-    ax.ylabel('True Positive Rate')
-    ax.title('Some extension of Receiver operating characteristic to multi-class')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Some extension of Receiver operating characteristic to multi-class')
     # plt.legend(loc="lower right")
     plt.savefig(filename + ".png")
 

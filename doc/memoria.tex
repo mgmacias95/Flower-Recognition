@@ -217,16 +217,16 @@ Hemos decidido usar los descriptores de SIFT y de SURF para extraer los \textit{
 El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ supone un tiempo de 45 minutos aproximadamente. Las tasas de acierto se encuentran en la \hyperref[resSHAPE]{Tabla \ref*{resSHAPE}}. En general, vemos que cuanto mayor es $k$, mejor es el modelo que obtenemos. 
 
 \begin{table}[H]
-  \begin{tabular}{|l|r|r|r||r|r|r|}
+  \begin{tabular}{|l|r|r|r||r|r|r|r|}
   \hline
-    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{3}{c||}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{3}{c|}{\textbf{Tasa de acierto} ($k=200$)} \\
-    \cline{2-7}
-    & \textbf{SIFT} & \textbf{SURF} & \textbf{KAZE} & \textbf{SIFT} & \textbf{SURF} & \textbf{KAZE} \\
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{3}{c||}{$k=20$} & \multicolumn{3}{c|}{$k=200$} & \textbf{$k=500$} \\
+    \cline{2-8}
+    & \textbf{SIFT} & \textbf{SURF} & \textbf{KAZE} & \textbf{SIFT} & \textbf{SURF} & \textbf{KAZE} & \textbf{KAZE} \\
     \hline
-    \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.71$ & $\qquad 0.76$ & $\qquad 0.80$ \\ 
-    \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.78$ & $\qquad 0.76$ & $\qquad 0.80$ \\
-    \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.75$ & $\qquad 0.71$ & $\qquad 0.73$ \\
-    \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.63$ & $\qquad 0.69$ & $\qquad 0.75$ & $\qquad 0.67$ & $\qquad 0.71$ \\
+    \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.71$ & $\qquad 0.76$ & $\qquad 0.80$ & $\qquad 0.75$ \\ 
+    \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.78$ & $\qquad 0.76$ & $\qquad 0.80$ & $\qquad 0.71$ \\
+    \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.75$ & $\qquad 0.71$ & $\qquad 0.73$ & $\qquad 0.75$ \\
+    \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.63$ & $\qquad 0.69$ & $\qquad 0.75$ & $\qquad 0.67$ & $\qquad 0.71$ & $\qquad 0.71$ \\
     \hline
   \end{tabular}
   \label{resSHAPE}
@@ -240,7 +240,7 @@ Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColo
 \begin{table}[H]
   \begin{tabular}{|l|r|r||r|r|}
   \hline
-    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c||}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c|}{\textbf{Tasa de acierto} ($k=200$)} \\
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c||}{$k=20$} & \multicolumn{2}{c|}{$k=200$} \\
     \cline{2-5}
     & \textbf{SIFT} & \textbf{SURF} & \textbf{SIFT} & \textbf{SURF} \\
     \hline
@@ -261,7 +261,7 @@ Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbo
 \begin{table}[H]
   \begin{tabular}{|l|r|r||r|r|}
   \hline
-    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c||}{\textbf{Tasa de acierto} ($k=20$)} & \multicolumn{2}{c|}{\textbf{Tasa de acierto} ($k=200$)} \\
+    \multirow{2}{*}{\textbf{Algoritmo}} & \multicolumn{2}{c||}{$k=20$} & \multicolumn{2}{c|}{$k=200$} \\
     \cline{2-5}
     & \textbf{SIFT} & \textbf{SURF} & \textbf{SIFT} & \textbf{SURF} \\
     \hline

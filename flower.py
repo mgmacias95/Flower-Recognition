@@ -51,8 +51,8 @@ def create_bag_of_words(images, detector_type, k_size = 10):
     elif detector_type == 'SIFT':
         detector = cv2.xfeatures2d.SIFT_create()
 
-    elif detector_type == 'BOOST':
-        detector = cv2.xfeatures2d.BoostDesc_create()
+    elif detector_type == 'KAZE':
+        detector = cv2.KAZE_create()
 
     else:
         raise ValueError('Not a suitable detector')
@@ -120,8 +120,8 @@ def compute_BOW_response(BOW, images, detector_type,
     elif detector_type == 'SIFT':
         detector = cv2.xfeatures2d.SIFT_create()
 
-    elif detector_type == 'BOOST':
-        detector = cv2.xfeatures2d.BoostDesc_create()
+    elif detector_type == 'KAZE':
+        detector = cv2.KAZE_create()
 
     else:
         raise ValueError('Not a suitable detector')

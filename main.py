@@ -79,18 +79,18 @@ if __name__ == '__main__':
     # create numeric labels for each class
     nlabels = ml.generate_num_labels()
 
-    ks = [200]
+    ks = [20, 200, 500]
 
     for k in ks:
         print("\n\nK = " + str(ks))
         bfilename = "bow_"+sys.argv[1].lower()+"k"+str(k)
-        bhfilename = "bow_hsv_"+sys.argv[1].lower()+"k"+str(k)
+        # bhfilename = "bow_hsv_"+sys.argv[1].lower()+"k"+str(k)
         rfilename = "shape"+sys.argv[1].lower()+"_"+str(k)
-        rhfilename = "color" + sys.argv[1].lower() + "_" + str(k)
-        rbfilename = "both" + sys.argv[1].lower() + "_" + str(k)
+        # rhfilename = "color" + sys.argv[1].lower() + "_" + str(k)
+        # rbfilename = "both" + sys.argv[1].lower() + "_" + str(k)
         # train with images without any color modification
         train_model(images=images, nlabels=nlabels, roc_filename=rfilename, bow_filename=bfilename, k_size=k)
         # train with color quantization
-        train_model(images=qimages, nlabels=nlabels, bow_filename=bhfilename, roc_filename=rhfilename, k_size=k)
-        # train with both
-        train_both_models(nlabels, rbfilename, bfilename, bhfilename)
+        # train_model(images=qimages, nlabels=nlabels, bow_filename=bhfilename, roc_filename=rhfilename, k_size=k)
+        # # train with both
+        # train_both_models(nlabels, rbfilename, bfilename, bhfilename)

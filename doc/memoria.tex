@@ -270,7 +270,7 @@ Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbo
 \end{table}
 
 \subsection{Conclusiones de los experimentos}
-El mejor resultado lo hemos obtenido usando $k=200$ con \textit{SVM one-vs-one} y usando sólo información sobre la forma de la flor. El peor, usando $k=20$ con \textit{Boosting} y usando información sobre el color. Además, usar información del color y de la forma no ha supuesto una gran mejora. Esto pensamos que es debido a que no hemos sabido extraer el color correctamente y hemos aplicado un tratamiento erróneo a las imágenes. Por tanto, para futuras mejoras del trabajo realizado deberíamos aumentar el $k$ y tratar de encontrar un descriptor basado en el color, en vez de aplicar un preprocesamiento a las imágenes.
+El mejor resultado lo hemos obtenido usando $k=200$ con \textit{SVM one-vs-one} y usando sólo información sobre la forma de la flor. El peor, usando $k=20$ con \textit{Boosting} y usando información sobre el color. Además, usar información del color y de la forma no ha supuesto una gran mejora. La mejora que se produce introduciendo la información que ofrece el color se produce cuando el tamaño de $k$ que utiliza el \textit{K-Means} para realizar el \textit{clustering} es pequeño, ya que introduce una información útil para que el clasificador aprenda mejor los datos de cada clase, pero con tamaños grandes de $k$, esta información del color no aporta mucho a la solución.
 
 \bibliography{citations} %archivo citas.bib que contiene las entradas 
 \bibliographystyle{plain} % hay varias formas de citar

@@ -124,6 +124,7 @@
 							</ul>
 							<li class="fragment" data-fragment="2">Random Forest</li>
 							<li class="fragment" data-fragment="2">Boosting</li>
+							<li>Los modelos se entrenarán haciendo validación cruzada debido a que solo disponemos de 1360 imágenes.</li>
 						</ul>
 					</section>
 				</section>
@@ -169,6 +170,22 @@
 					<section>
 						<h2>Curva ROC del mejor modelo</h2>
 						<img src="img/roc.png" style="width: 85%">
+					</section>
+				</section>
+				<section data-transition="zoom">
+					<section>
+						<h2>Conclusiones</h2>
+						<ul>
+							<li>La aproximación de usar solo el color no es correcta debido a las variaciones de color que existen dentro de una misma clase. Solo aportan valor para un tamaño de BOW pequeño.</li>
+							<li>El cambiar las imágenes al espacio de color HSV nos permite hacer que los colores sean independientes a las condiciones de luz de la imagen.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Conclusiones</h2>
+						<ul>
+							<li>El mejor modelo es el que utiliza SVM con solo información geométrica de la imágen extraída usando KAZE y con un tamaño $k=500$ para el K-Means que calcula el BOW.</li>
+							<li>El tamaño del BOW y la calidad del clustering, junto con la calidad de los puntos extraídos y el detector usado son fundamental para que los algoritmos de aprendizaje realicen un buen trabajo.</li>
+						</ul>
 					</section>
 				</section>
 			</div>

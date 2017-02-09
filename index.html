@@ -35,58 +35,80 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-			  <section data-transition="zoom">
-			    <h2>Reconocimiento de especies de flores</h2>
-			    <p>
-				<small>Creado por <a href="https://github.com/mgmacias95">Marta Gómez</a> y <a href="https://github.com/BraulioV">Braulio Vargas</a></small>
-			    </p>
-			    <p style="margin-top: 5%">
-			      <a href="https://github.com/mgmacias95" style="float:left"><i class="fa fa-github fa-2x" aria-hidden="true"></i> @mgmacias95</a>
-			      <a href="https://github.com/BraulioV" style="float:right"><i class="fa fa-github fa-2x" aria-hidden="true"></i> @BraulioV</a>
-			    </p>
-			  </section>
-			  <section data-transition="zoom">
-			    <h2 style="float: left; text-align;">Índice</h2>
-			    <ul style="float: right; text-align: right;">
-				  <li class="fragment" data-fragment-index="0">Descripción e interés del problema.</li>
-				  <li class="fragment" data-fragment-index="1">Descripción de la implementación.</li>
-				  <li class="fragment" data-fragment-index="2">Descripción de las imágenes usadas.</li>
-				  <li class="fragment" data-fragment-index="3">Descripción de los resultados.</li>
-				  <li class="fragment" data-fragment-index="4">Conclusiones.</li>
-				</ul>
-			  </section>
-			  <section data-transition="zoom">
-			  	<h2>Descripción e interés del problema</h2>
+				<section data-transition="zoom">
+					<h2>Reconocimiento de especies de flores</h2>
+					<p>
+						<small>Creado por <a href="https://github.com/mgmacias95">Marta Gómez</a> y <a href="https://github.com/BraulioV">Braulio Vargas</a></small>
+					</p>
+					<p style="margin-top: 5%">
+						<a href="https://github.com/mgmacias95" style="float:left"><i class="fa fa-github fa-2x" aria-hidden="true"></i> @mgmacias95</a>
+						<a href="https://github.com/BraulioV" style="float:right"><i class="fa fa-github fa-2x" aria-hidden="true"></i> @BraulioV</a>
+					</p>
+				</section>
+				<section data-transition="zoom">
+					<h2 style="float: left; text-align;">Índice</h2>
+					<ul style="float: right; text-align: right;">
+						<li class="fragment" data-fragment-index="0">Descripción e interés del problema.</li>
+						<li class="fragment" data-fragment-index="1">Descripción de la implementación.</li>
+						<li class="fragment" data-fragment-index="2">Descripción de las imágenes usadas.</li>
+						<li class="fragment" data-fragment-index="3">Descripción de los resultados.</li>
+						<li class="fragment" data-fragment-index="4">Conclusiones.</li>
+					</ul>
+				</section>
+				<section data-transition="zoom">
+					<h2>Descripción e interés del problema</h2>
 
-			  	<div class="fragment" data-fragment-index="0">Nuestro problema consiste en poder identificar y clasificar 17 clases distintas de flores británicas.</div>
-				<div class="fragment" data-fragment-index="1" style="float:left">
-				  <ul>
-				    <li>Daffodil</li>
-				    <li>Snowdrop</li>
-				    <li>LillyValley</li>
-				    <li>BlueBell</li>
-				    <li>Crocus</li>
-				    <li>Iris</li>
-				    <li>Tigerlily</li>
-				    <li>Tulip</li>
-				  </ul>
-				</div>
-				<div class="fragment" data-fragment-index="1" style="float:right">
-				  <ul>
-				    <li>Fritillary</li>
-				    <li>Sunflower</li>
-				    <li>Daisy</li>
-				    <li>Colt'sFoot</li>
-				    <li>Dandelion</li>
-				    <li>Cowslip</li>
-				    <li>Buttercup</li>
-				    <li>Windflower</li>
-				    <li>Pansy</li>
-				  </ul>
-				</div>
-			  </section>
-			  </div>
+					<div class="fragment" data-fragment-index="0">Nuestro problema consiste en poder identificar y clasificar 17 clases distintas de flores británicas.</div>
+					<div class="fragment" data-fragment-index="1" style="float:left">
+						<ul>
+							<li>Daffodil</li>
+							<li>Snowdrop</li>
+							<li>LillyValley</li>
+							<li>BlueBell</li>
+							<li>Crocus</li>
+							<li>Iris</li>
+							<li>Tigerlily</li>
+							<li>Tulip</li>
+						</ul>
+					</div>
+					<div class="fragment" data-fragment-index="1" style="float:right">
+						<ul>
+							<li>Fritillary</li>
+							<li>Sunflower</li>
+							<li>Daisy</li>
+							<li>Colt'sFoot</li>
+							<li>Dandelion</li>
+							<li>Cowslip</li>
+							<li>Buttercup</li>
+							<li>Windflower</li>
+							<li>Pansy</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<section data-transition="zoom">
+						<h2>Descripción de la implementación</h2>
+						<ul>
+							<li class="fragment" data-fragment="0">Implementado en <i>Python</i>.</li>
+							<li class="fragment" data-fragment="1">Usando <i>OpenCV</i> para la extracción de características.</li>
+							<li class="fragment" data-fragment="2"><i>Scikit-learn</i> para la parte de aprendizaje automático.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Extracción de características</h2>
+						<ul>
+							<li class="fragment" data-fragment="0">Para detección de puntos clave hemos usado los descriptores SIFT, SURF y KAZE.</li>
+							<li class="fragment" data-fragment="1">Para crear clústers de los puntos clave encontrados hemos usado kMeans con distintos valores de $k$.</li>
+							<li class="fragment" data-fragment="2">Una vez creados los clústers hacemos una bolsa de palabras para cada imagen.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>KAZE</h2>
+						<img src="img/KAZE.jpg">
+					</section>
+				</section>
 			</div>
+		</div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
@@ -96,12 +118,18 @@
 			Reveal.initialize({
 				history: true,
 
+				math: {
+			        mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+			        config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+			    },
+
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true }
 				]
 			});
 		</script>

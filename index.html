@@ -1,0 +1,109 @@
+<!doctype html>
+<html  lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Reconocimiento de Flores</title>
+
+		<meta name="description" content="Reconocimiento de distintas clases de objetos usando OpenCV y scikit-learn">
+		<meta name="author" content="Braulio Vargas López">
+		<meta name="author" content="Marta Gómez Macías">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Fuentes molonas con iconos para la presentación -->
+		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+ 
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			  <section data-transition="zoom">
+			    <h2>Reconocimiento de especies de flores</h2>
+			    <p>
+				<small>Creado por <a href="https://github.com/mgmacias95">Marta Gómez</a> y <a href="https://github.com/BraulioV">Braulio Vargas</a></small>
+			    </p>
+			    <p style="margin-top: 5%">
+			      <a href="https://github.com/mgmacias95" style="float:left"><i class="fa fa-github fa-2x" aria-hidden="true"></i> @mgmacias95</a>
+			      <a href="https://github.com/BraulioV" style="float:right"><i class="fa fa-github fa-2x" aria-hidden="true"></i> @BraulioV</a>
+			    </p>
+			  </section>
+			  <section data-transition="zoom">
+			    <h2 style="float: left; text-align;">Índice</h2>
+			    <ul style="float: right; text-align: right;">
+				  <li class="fragment" data-fragment-index="0">Descripción e interés del problema.</li>
+				  <li class="fragment" data-fragment-index="1">Descripción de la implementación.</li>
+				  <li class="fragment" data-fragment-index="2">Descripción de las imágenes usadas.</li>
+				  <li class="fragment" data-fragment-index="3">Descripción de los resultados.</li>
+				  <li class="fragment" data-fragment-index="4">Conclusiones.</li>
+				</ul>
+			  </section>
+			  <section data-transition="zoom">
+			  	<h2>Descripción e interés del problema</h2>
+
+			  	<div class="fragment" data-fragment-index="0">Nuestro problema consiste en poder identificar y clasificar 17 clases distintas de flores británicas.</div>
+				<div class="fragment" data-fragment-index="1" style="float:left">
+				  <ul>
+				    <li>Daffodil</li>
+				    <li>Snowdrop</li>
+				    <li>LillyValley</li>
+				    <li>BlueBell</li>
+				    <li>Crocus</li>
+				    <li>Iris</li>
+				    <li>Tigerlily</li>
+				    <li>Tulip</li>
+				  </ul>
+				</div>
+				<div class="fragment" data-fragment-index="1" style="float:right">
+				  <ul>
+				    <li>Fritillary</li>
+				    <li>Sunflower</li>
+				    <li>Daisy</li>
+				    <li>Colt'sFoot</li>
+				    <li>Dandelion</li>
+				    <li>Cowslip</li>
+				    <li>Buttercup</li>
+				    <li>Windflower</li>
+				    <li>Pansy</li>
+				  </ul>
+				</div>
+			  </section>
+			  </div>
+			</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

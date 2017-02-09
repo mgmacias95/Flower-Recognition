@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="23cm" height="19cm" viewBox="115 40 450 380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Oxygen-Sans;font-style:normal;font-weight:700" x="158.963" y="55.651">
+    <tspan x="158.963" y="55.651">Población </tspan>
+    <tspan x="158.963" y="71.651">actual</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Oxygen-Sans;font-style:normal;font-weight:700" x="341.406" y="56.9322">
+    <tspan x="341.406" y="56.9322">Población </tspan>
+    <tspan x="341.406" y="72.9322">padres</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Oxygen-Sans;font-style:normal;font-weight:700" x="525.904" y="55.4208">
+    <tspan x="525.904" y="55.4208">Población </tspan>
+    <tspan x="525.904" y="71.4208">intermedia</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="198.444" y1="145.007" x2="289.047" y2="145.14"/>
+    <polygon style="fill: #000000" points="296.547,145.151 286.54,150.137 289.047,145.14 286.555,140.137 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="296.547,145.151 286.54,150.137 289.047,145.14 286.555,140.137 "/>
+  </g>
+  <g>
+    <rect style="fill: #9a9a9a" x="116.211" y="77.9458" width="81.2471" height="134"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="116.211" y="77.9458" width="81.2471" height="134"/>
+    <text font-size="12.8" style="fill: #bb4500;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="156.834" y="100.846">
+      <tspan x="156.834" y="100.846">C</tspan>
+      <tspan x="156.834" y="116.846">C</tspan>
+      <tspan x="156.834" y="132.846">C</tspan>
+      <tspan x="156.834" y="148.846">.</tspan>
+      <tspan x="156.834" y="164.846">.</tspan>
+      <tspan x="156.834" y="180.846">.</tspan>
+      <tspan x="156.834" y="196.846">C</tspan>
+    </text>
+  </g>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="161.89" y="101.166">
+    <tspan x="161.89" y="101.166">1</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="162.151" y="116.84">
+    <tspan x="162.151" y="116.84">2</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="161.538" y="133.021">
+    <tspan x="161.538" y="133.021">3</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="162.151" y="196.842">
+    <tspan x="162.151" y="196.842">n</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="382.007" y1="145.26" x2="471.292" y2="145.356"/>
+    <polygon style="fill: #000000" points="478.792,145.364 468.787,150.353 471.292,145.356 468.798,140.353 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="478.792,145.364 468.787,150.353 471.292,145.356 468.798,140.353 "/>
+  </g>
+  <g>
+    <rect style="fill: #9a9a9a" x="197.935" y="269.056" width="81.2471" height="150"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="197.935" y="269.056" width="81.2471" height="150"/>
+    <text font-size="12.8" style="fill: #bb4500;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="238.558" y="299.956">
+      <tspan x="238.558" y="299.956">H</tspan>
+      <tspan x="238.558" y="315.956">H</tspan>
+      <tspan x="238.558" y="331.956">H</tspan>
+      <tspan x="238.558" y="347.956">.</tspan>
+      <tspan x="238.558" y="363.956">.</tspan>
+      <tspan x="238.558" y="379.956">.</tspan>
+      <tspan x="238.558" y="395.956">C</tspan>
+    </text>
+  </g>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="244.614" y="299.776">
+    <tspan x="244.614" y="299.776">1</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="244.876" y="315.45">
+    <tspan x="244.876" y="315.45">2</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="244.262" y="331.63">
+    <tspan x="244.262" y="331.63">3</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="244.876" y="395.452">
+    <tspan x="244.876" y="395.452">mejor</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="522.642,213.419 522.642,244.357 440.582,244.357 440.582,265.56 "/>
+    <polygon style="fill: #000000" points="440.582,273.06 435.582,263.06 440.582,265.56 445.582,263.06 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="440.582,273.06 435.582,263.06 440.582,265.56 445.582,263.06 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="399.052" y1="343.459" x2="289.824" y2="343.865"/>
+    <polygon style="fill: #000000" points="282.324,343.893 292.305,338.856 289.824,343.865 292.342,348.856 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="282.324,343.893 292.305,338.856 289.824,343.865 292.342,348.856 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="238.558,268.047 238.558,240.5 156.834,240.5 156.834,222.69 "/>
+    <polygon style="fill: #000000" points="156.834,215.19 161.834,225.19 156.834,222.69 151.834,225.19 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="156.834,215.19 161.834,225.19 156.834,222.69 151.834,225.19 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="447.63" y="236.65">
+    <tspan x="447.63" y="236.65">Mutación</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="282.794" y="335.018">
+    <tspan x="282.794" y="335.018">Reemplazamiento</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="170.17" y="236.9">
+    <tspan x="170.17" y="236.9">it = it +1</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="408.718" y="135.145">
+    <tspan x="408.718" y="135.145">Cruce</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="403.414" y="160.954">
+    <tspan x="403.414" y="160.954">con p=p</tspan>
+  </text>
+  <text font-size="9.03111" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="457.154" y="163.076">
+    <tspan x="457.154" y="163.076">c</tspan>
+  </text>
+  <g>
+    <g>
+      <rect style="fill: #9a9a9a" x="299.77" y="78.2158" width="81.2471" height="134"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="299.77" y="78.2158" width="81.2471" height="134"/>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="340.394" y="101.116">
+        <tspan x="340.394" y="101.116">C</tspan>
+        <tspan x="340.394" y="117.116">C</tspan>
+        <tspan x="340.394" y="133.116">C</tspan>
+        <tspan x="340.394" y="149.116">.</tspan>
+        <tspan x="340.394" y="165.116">.</tspan>
+        <tspan x="340.394" y="181.116">.</tspan>
+        <tspan x="340.394" y="197.116">C</tspan>
+      </text>
+    </g>
+    <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.45" y="101.436">
+      <tspan x="345.45" y="101.436">1</tspan>
+    </text>
+    <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.712" y="117.11">
+      <tspan x="345.712" y="117.11">2</tspan>
+    </text>
+    <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.098" y="133.291">
+      <tspan x="345.098" y="133.291">3</tspan>
+    </text>
+    <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.712" y="197.112">
+      <tspan x="345.712" y="197.112">n</tspan>
+    </text>
+  </g>
+  <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.632" y="99.1508">
+    <tspan x="345.632" y="99.1508">'</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.882" y="116.401">
+    <tspan x="345.882" y="116.401">'</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.354" y="132.301">
+    <tspan x="345.354" y="132.301">'</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.726" y="195.618">
+    <tspan x="345.726" y="195.618">'</tspan>
+  </text>
+  <g>
+    <g>
+      <g>
+        <rect style="fill: #9a9a9a" x="482.018" y="78.4108" width="81.2471" height="134"/>
+        <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="482.018" y="78.4108" width="81.2471" height="134"/>
+        <text font-size="12.8" style="fill: #bb4500;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="522.642" y="101.311">
+          <tspan x="522.642" y="101.311">C</tspan>
+          <tspan x="522.642" y="117.311">C</tspan>
+          <tspan x="522.642" y="133.311">C</tspan>
+          <tspan x="522.642" y="149.311">.</tspan>
+          <tspan x="522.642" y="165.311">.</tspan>
+          <tspan x="522.642" y="181.311">.</tspan>
+          <tspan x="522.642" y="197.311">C</tspan>
+        </text>
+      </g>
+      <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="527.698" y="101.631">
+        <tspan x="527.698" y="101.631">1</tspan>
+      </text>
+      <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="527.96" y="117.305">
+        <tspan x="527.96" y="117.305">2</tspan>
+      </text>
+      <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="527.346" y="133.486">
+        <tspan x="527.346" y="133.486">3</tspan>
+      </text>
+      <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="527.96" y="197.307">
+        <tspan x="527.96" y="197.307">n</tspan>
+      </text>
+    </g>
+    <g>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="527.88" y="99.3458">
+        <tspan x="527.88" y="99.3458">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="528.13" y="116.596">
+        <tspan x="528.13" y="116.596">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="527.602" y="132.496">
+        <tspan x="527.602" y="132.496">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="527.974" y="195.813">
+        <tspan x="527.974" y="195.813">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="529.732" y="99.3464">
+        <tspan x="529.732" y="99.3464">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="529.982" y="116.596">
+        <tspan x="529.982" y="116.596">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="529.454" y="132.497">
+        <tspan x="529.454" y="132.497">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="529.826" y="195.814">
+        <tspan x="529.826" y="195.814">'</tspan>
+      </text>
+    </g>
+  </g>
+  <g>
+    <g>
+      <g>
+        <rect style="fill: #9a9a9a" x="399.958" y="276.304" width="81.2471" height="134"/>
+        <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="399.958" y="276.304" width="81.2471" height="134"/>
+        <text font-size="12.8" style="fill: #bb4500;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="440.582" y="299.204">
+          <tspan x="440.582" y="299.204">C</tspan>
+          <tspan x="440.582" y="315.204">C</tspan>
+          <tspan x="440.582" y="331.204">C</tspan>
+          <tspan x="440.582" y="347.204">.</tspan>
+          <tspan x="440.582" y="363.204">.</tspan>
+          <tspan x="440.582" y="379.204">.</tspan>
+          <tspan x="440.582" y="395.204">C</tspan>
+        </text>
+      </g>
+      <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="445.638" y="299.526">
+        <tspan x="445.638" y="299.526">1</tspan>
+      </text>
+      <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="445.898" y="315.2">
+        <tspan x="445.898" y="315.2">2</tspan>
+      </text>
+      <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="445.286" y="331.38">
+        <tspan x="445.286" y="331.38">3</tspan>
+      </text>
+      <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="445.898" y="395.202">
+        <tspan x="445.898" y="395.202">n</tspan>
+      </text>
+    </g>
+    <g>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="445.818" y="297.24">
+        <tspan x="445.818" y="297.24">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="446.068" y="314.49">
+        <tspan x="446.068" y="314.49">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="445.542" y="330.39">
+        <tspan x="445.542" y="330.39">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="445.914" y="393.708">
+        <tspan x="445.914" y="393.708">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="447.672" y="297.24">
+        <tspan x="447.672" y="297.24">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="447.922" y="314.49">
+        <tspan x="447.922" y="314.49">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="447.394" y="330.392">
+        <tspan x="447.394" y="330.392">'</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="447.766" y="393.708">
+        <tspan x="447.766" y="393.708">'</tspan>
+      </text>
+    </g>
+  </g>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="450.892" y="299.65">
+    <tspan x="450.892" y="299.65">M</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="450.484" y="315.36">
+    <tspan x="450.484" y="315.36">M</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="449.802" y="331.364">
+    <tspan x="449.802" y="331.364">M</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="451.302" y="395.892">
+    <tspan x="451.302" y="395.892">M</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="440.582" y="343.304">
+    <tspan x="440.582" y="343.304"></tspan>
+  </text>
+  <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="410.818" y="298.286">
+    <tspan x="410.818" y="298.286">H = </tspan>
+  </text>
+  <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="410.68" y="314.468">
+    <tspan x="410.68" y="314.468">H = </tspan>
+  </text>
+  <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="410.544" y="331.016">
+    <tspan x="410.544" y="331.016">H = </tspan>
+  </text>
+  <text font-size="12.8" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="410.408" y="394.728">
+    <tspan x="410.408" y="394.728">H = </tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="420.042" y="301.456">
+    <tspan x="420.042" y="301.456">1</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="420.304" y="317.13">
+    <tspan x="420.304" y="317.13">2</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="419.69" y="333.31">
+    <tspan x="419.69" y="333.31">3</tspan>
+  </text>
+  <text font-size="6.77333" style="fill: #bb4500;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="420.304" y="397.132">
+    <tspan x="420.304" y="397.132">n</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="213.122" y="136.316">
+    <tspan x="213.122" y="136.316">Selección</tspan>
+  </text>
+</svg>

@@ -98,8 +98,8 @@
 						<h2>Extracción de características</h2>
 						<ul>
 							<li class="fragment" data-fragment="0">Para detección de puntos clave hemos usado los descriptores SIFT, SURF y KAZE.</li>
-							<li class="fragment" data-fragment="1">Para crear clústers de los puntos clave encontrados hemos usado kMeans con distintos valores de $k$.</li>
-							<li class="fragment" data-fragment="2">Una vez creados los clústers hacemos una bolsa de palabras para cada imagen.</li>
+							<li class="fragment" data-fragment="1"> Para obtener el BOW, ejecutamos un algoritmo K-Means sobre los descriptores de los puntos claves detectados. Para ello usamos <code>BOWKMeansTrainer</code> y <code>cluster</code> de OpenCV.</li>
+							<li class="fragment" data-fragment="2">Computamos los histogramas de respuestas a las palabras para cada imagen, obteniendo el descriptor de estas. Para ello usamos <code>BOWImgDescriptorExtractor</code>.</li>
 						</ul>
 					</section>
 					<section>

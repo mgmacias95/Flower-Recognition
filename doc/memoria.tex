@@ -158,7 +158,7 @@ Este vocabulario lo podemos construir haciendo uso de técnicas que se centran e
 
 El descriptor HOG, conocido como \textit{\textbf{Histogram of Oriented Gradientes}} es muy utilizado para la detección de objetos. Este descriptor computa un histograma de valores donde se indican la frecuencia con la que se dan las direcciones de los gradientes en pequeñas divisiones de la imagen.
 
-Hemos probado también a hacer un preprocesamiento de las imágenes convirtiéndolas al espacio de color HSV y simplificando los colores de las imágenes mediante la técnica \textbf{Color Quantization}\cite{cq}, para poder tener colores planos en la imagen. En la \hyperref[color]{Figura \ref*{color}} se ve una comparación entre una imagen sin ningún procesamiento previo y la misma imagen tras aplicar esta técnica. Esta técnica consiste en hacer grupos de colores mediante el algoritmo del \textit{Vecino más cercano} y sustituir todos los colores de un grupo por el más central. Así, se eliminan sombras y se simplifica la imagen para poder obtener mejores resultados.
+Hemos probado también a hacer un preprocesamiento de las imágenes convirtiéndolas al espacio de color HSV y simplificando los colores de las imágenes mediante la técnica \textbf{Color Quantization}\cite{cq}, para poder tener colores planos en la imagen. En la \hyperref[color]{Figura \ref*{color}} se ve una comparación entre una imagen sin ningún procesamiento previo y la misma imagen tras aplicar esta técnica. Esta técnica consiste en hacer grupos de colores mediante el algoritmo del \textit{kMeans} y sustituir todos los colores de un grupo por el más central. Así, se eliminan sombras y se simplifica la imagen para poder obtener mejores resultados.
 
 \begin{figure}[!h]
   \centering

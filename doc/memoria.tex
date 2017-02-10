@@ -199,7 +199,7 @@ Con todo esto, podremos calcular el histograma para cada imagen y obtener el des
 
 \subsection{Pruebas}
 
-En esta última parte, comprobaremos cómo de efectivos han sido los datos extraídos. Para ello, se han usado dos algoritmos de aprendizaje automático, dos \textit{Support Vector Machine} (SVM), uno siguiendo el método \textit{one-vs-all} y otro, el método \textit{one-vs-one}, y dos \textit{Random Forest}, uno aplicando \textit{bootsting} y otro sin aplicarlo. La ejecución de un modelo u otro no requiere más de 5 minutos, gracias a que cada algoritmo se ejecuta de forma paralela.
+En esta última parte, comprobaremos cómo de efectivos han sido los datos extraídos. Para ello, se han usado dos algoritmos de aprendizaje automático, dos \textit{Support Vector Machine} (SVM), uno siguiendo el método \textit{one-vs-all} y otro, el método \textit{one-vs-one}, y dos \textit{Random Forest}, uno aplicando \textit{boosting} y otro sin aplicarlo. La ejecución de un modelo u otro no requiere más de 5 minutos, gracias a que cada algoritmo se ejecuta de forma paralela.
 
 Para comprobar la eficacia de los modelos, usaremos validación cruzada al tener un conjunto de datos pequeño ($n=1360$).
 
@@ -225,8 +225,8 @@ El tiempo de ejecución del clustering depende del tamaño, pero para $k=200$ su
     \hline
     \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.71$ & $\qquad 0.76$ & $\qquad 0.80$ & $\qquad 0.86$ \\
     \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.78$ & $\qquad 0.76$ & $\qquad 0.80$ & $\qquad 0.86$ \\
-    \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.75$ & $\qquad 0.71$ & $\qquad 0.73$ & $\qquad 0.75$ \\
-    \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.63$ & $\qquad 0.69$ & $\qquad 0.75$ & $\qquad 0.67$ & $\qquad 0.71$ & $\qquad 0.71$ \\
+    \textit{RF con boosting} & $\qquad 0.65$ & $\qquad 0.45$ & $\qquad 0.61$ & $\qquad 0.75$ & $\qquad 0.71$ & $\qquad 0.73$ & $\qquad 0.75$ \\
+    \textit{RF sin boosting} & $\qquad 0.59$ & $\qquad 0.63$ & $\qquad 0.69$ & $\qquad 0.75$ & $\qquad 0.67$ & $\qquad 0.71$ & $\qquad 0.71$ \\
     \hline
   \end{tabular}
   \label{resSHAPE}
@@ -246,8 +246,8 @@ Las tasas de acierto se encuentran en la \hyperref[resColor]{Tabla \ref*{resColo
     \hline
     \textit{SVM one-vs-all} & $\qquad 0.47$ & $\qquad 0.47$ & $\qquad 0.61$ & $\qquad 0.65$ \\ 
     \textit{SVM one-vs-one} & $\qquad 0.47$ & $\qquad 0.47$ & $\qquad 0.61$ & $\qquad 0.65$ \\
-    \textit{RF con bootsting} & $\qquad 0.43$ & $\qquad 0.47$ & $\qquad 0.49$ & $\qquad 0.55$ \\
-    \textit{RF sin bootsting} & $\qquad 0.45$ & $\qquad 0.49$ & $\qquad 0.49$ & $\qquad 0.57$ \\
+    \textit{RF con boosting} & $\qquad 0.43$ & $\qquad 0.47$ & $\qquad 0.49$ & $\qquad 0.55$ \\
+    \textit{RF sin boosting} & $\qquad 0.45$ & $\qquad 0.49$ & $\qquad 0.49$ & $\qquad 0.57$ \\
     \hline
   \end{tabular}
   \label{resColor}
@@ -267,8 +267,8 @@ Las tasas de acierto se encuentran en la \hyperref[resAmbos]{Tabla \ref*{resAmbo
     \hline
     \textit{SVM one-vs-all} & $\qquad 0.63$ & $\qquad 0.63$ & $\qquad 0.75$ & $\qquad 0.76$ \\ 
     \textit{SVM one-vs-one} & $\qquad 0.63$ & $\qquad 0.63$ & $\qquad 0.75$ & $\qquad 0.76$ \\
-    \textit{RF con bootsting} & $\qquad 0.65$ & $\qquad 0.63$ & $\qquad 0.67$ & $\qquad 0.69$ \\
-    \textit{RF sin bootsting} & $\qquad 0.59$ & $\qquad 0.65$ & $\qquad 0.73$ & $\qquad 0.67$ \\
+    \textit{RF con boosting} & $\qquad 0.65$ & $\qquad 0.63$ & $\qquad 0.67$ & $\qquad 0.69$ \\
+    \textit{RF sin boosting} & $\qquad 0.59$ & $\qquad 0.65$ & $\qquad 0.73$ & $\qquad 0.67$ \\
     \hline
   \end{tabular}
   \label{resAmbos}
